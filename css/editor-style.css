@@ -1,0 +1,39 @@
+/*	--------------------------------------------------
+	 Custom styles for editor
+	-------------------------------------------------- */
+
+body {
+	font-family: 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+	line-height: 1.25;
+}
+body p {
+	font-family: 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+}
+body a {
+	color: #dd5522;
+}
+body .callout {
+   padding: 1em 1.5em;
+   background: #f6f6f6;
+   border: 1px solid #ddd;
+}
+body .alignnone {
+   margin: 1em 1em 1em 0;
+}
+body .aligncenter,
+body div.aligncenter {
+   display:block;
+   margin: .5em auto;
+}
+body .alignright {
+   float:right;
+   margin: 0 0 1em 1em;
+}
+body .alignleft {
+   float:left;
+   margin: 0 1em 1em 0;
+}
+body .aligncenter {
+   display: block;
+   margin: 1em auto;
+}
