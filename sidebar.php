@@ -1,2 +1,3 @@
-<div id="sidebar">
-</div>
+<aside class="sidebar">
+	Sidebar yo.
+</aside>
