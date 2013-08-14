@@ -38,20 +38,20 @@
 	}
 
 
-	// Create custom post type test - has_custom_tax('value');
-	function has_custom_tax( $customTax, $_post = null ) {
-		if ( empty( $customTax ) )
-			return false;
-		if ( $_post )
+	// Create custom taxonomy test
+	// Example: has_custom_tax('taxonomy_name','slug');
+	// Example: has_custom_tax('taxonomy_name', array('slug1', 'slug2', 'slug3'));
+	function has_custom_tax($tax, $term, $_post = NULL) {
+		if ( !$tax || !$term ) { return FALSE; }
+		if ( $_post ) {
 			$_post = get_post( $_post );
-		else
+		} else {
 			$_post =& $GLOBALS['post'];
-		if ( !$_post )
-			return false;
-		$r = is_object_in_term( $_post->ID, 'tax_name', $customTax );
-		if ( is_wp_error( $r ) )
-			return false;
-		return $r;
+		}
+		if ( !$_post ) { return FALSE; }
+		$return = is_object_in_term( $_post->ID, $tax, $term );
+		if ( is_wp_error( $return ) ) { return FALSE; }
+		return $return;
 	}
 
 
