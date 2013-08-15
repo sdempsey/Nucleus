@@ -290,9 +290,6 @@ a:focus {
 .entry table th {
 	border-width: 2px;
 }
-.entry table td {
-	color: #666;
-}
 .entry table tr:last-child th,
 .entry table tr:last-child td {
 	border-bottom: none;
