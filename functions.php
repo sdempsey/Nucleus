@@ -143,8 +143,6 @@
 		$in['apply_source_formatting'] = false;
 		$in['theme_advanced_buttons1'] = 'formatselect,bold,italic,underline,sub,sup,bullist,numlist,blockquote,justifyleft,justifycenter,justifyright,justifyfull,hr,link,unlink,fullscreen,wp_adv';
 		$in['theme_advanced_buttons2'] = 'styleselect,fontselect,fontsizeselect,forecolor,pastetext,removeformat,charmap,undo,redo,wp_more,wp_page';
-		$in['theme_advanced_buttons3'] = '';
-		$in['theme_advanced_buttons4'] = '';
 		$in['theme_advanced_blockformats'] = 'p,h1,h2,h3,h4,h5,h6,blockquote';
 		$in['theme_advanced_styles'] = "Name of Style=className,Another Style=anotherClassName";
 		$in['theme_advanced_fonts'] = 'Helvetica=Helvetica Neue, Helvetica, Arial, sans-serif;'.
