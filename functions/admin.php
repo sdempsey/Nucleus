@@ -4,6 +4,14 @@
 	 ADMINISTRATION AND PERMISSIONS
 	-------------------------------------------------------------------------------------------------- */
 
+	// Sort by PDF in Media Library
+	function modify_post_mime_types($post_mime_types) {
+	    $post_mime_types['application/pdf'] = array(__('PDF'), __('Manage PDF'), _n_noop('PDF <span class="count">(%s)</span>', 'PDF <span class="count">(%s)</span>'));
+	    return $post_mime_types;
+	}
+	add_filter('post_mime_types', 'modify_post_mime_types');
+
+
 	// Allow Editor access to Appearance menu
 	$editor_role = get_role( 'editor' );
 	$editor_role->add_cap( 'edit_theme_options' );
