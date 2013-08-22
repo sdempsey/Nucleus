@@ -1,10 +1,8 @@
 <?php
-
 	require_once locate_template('/functions/admin.php');
 	require_once locate_template('/functions/cleanup.php');
 	require_once locate_template('/functions/comments.php');
 	require_once locate_template('/functions/extras.php');
-	require_once locate_template('/functions/jquery.php');
 	require_once locate_template('/functions/pagination.php');
 
 /*	----------------------------------------------------------------------------------------------------
@@ -15,6 +13,7 @@
 
 		wp_enqueue_style( 'screen', get_stylesheet_uri(), '', '1.0', 'screen' );
 
+		wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/modernizr.js' );
 		wp_enqueue_script( 'site', get_template_directory_uri() . '/scripts/site.js', array('jquery'), '1.0', true );
 	}
 	add_action( 'wp_enqueue_scripts', 'script_enqueuer' );
@@ -46,11 +45,6 @@
 		'footer_navigation' => 'Footer Navigation'
 	));
 
-/*	----------------------------------------------------------------------------------------------------
-	 CUSTOM POST TYPES
-	---------------------------------------------------------------------------------------------------- */
-
-	// require_once locate_template('/functions/custom-post-type.php');
 
 /*	----------------------------------------------------------------------------------------------------
 	 WIDGET AREAS
@@ -73,13 +67,12 @@
 	 CUSTOM SHORTCODES
 	---------------------------------------------------------------------------------------------------- */
 
-	require_once locate_template('/functions/shortcodes.php');
-
 	// Email Encode Shortcode
+	// http://bavotasan.com/2012/shortcode-to-encode-email-in-wordpress-posts
 	function email_encode_function( $atts, $content ){
 		return '<a href="'.antispambot("mailto:".$content).'">'.antispambot($content).'</a>';
 	}
-	add_shortcode( 'email-encoder', 'email_encode_function' );
+	add_shortcode( 'email', 'email_encode_function' );
 
 	// Simple shortcode
 	// function custom_shortcode_x( $atts, $content = null ) {
@@ -121,38 +114,50 @@
 	//}
 	//add_filter( 'body_class', 'custom_body_classes');
 
+
 /*	----------------------------------------------------------------------------------------------------
-	 CUSTOMIZE TINYMCE
+	 TINYMCE CUSTOMIZATIONS
 	---------------------------------------------------------------------------------------------------- */
 
-	function myformatTinyMCE($in) {
-		$in['remove_linebreaks'] = false;
-		$in['gecko_spellcheck'] = false;
-		$in['keep_styles'] = true;
-		$in['accessibility_focus'] = true;
-		$in['tabfocus_elements'] = 'major-publishing-actions';
-		$in['media_strict'] = false;
-		$in['paste_remove_styles'] = false;
-		$in['paste_remove_spans'] = false;
-		$in['paste_strip_class_attributes'] = 'none';
-		$in['paste_text_use_dialog'] = true;
-		$in['wpeditimage_disable_captions'] = true;
-		$in['plugins'] = 'inlinepopups,tabfocus,paste,media,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs';
-		$in['content_css'] = get_template_directory_uri() . "/css/editor-style.css";
-		$in['wpautop'] = true;
-		$in['apply_source_formatting'] = false;
-		$in['theme_advanced_buttons1'] = 'formatselect,bold,italic,underline,sub,sup,bullist,numlist,blockquote,justifyleft,justifycenter,justifyright,justifyfull,hr,link,unlink,fullscreen,wp_adv';
-		$in['theme_advanced_buttons2'] = 'styleselect,fontselect,fontsizeselect,forecolor,pastetext,removeformat,charmap,undo,redo,wp_more,wp_page';
-		$in['theme_advanced_blockformats'] = 'p,h1,h2,h3,h4,h5,h6,blockquote';
-		$in['theme_advanced_styles'] = "Name of Style=className,Another Style=anotherClassName";
-		$in['theme_advanced_fonts'] = 'Helvetica=Helvetica Neue, Helvetica, Arial, sans-serif;'.
-									  'Custom Font=Custom Font, Helvetica Neue, Helvetica, Arial, sans-serif;'.
-									  '';
-		$in['theme_advanced_font_sizes'] = '0.75em,0.875em,1em,1.125em,1.25em,1.5em,1.75em,2em';
-		$in['theme_advanced_text_colors'] = 'ba192c,20b7dd';
-		$in['theme_advanced_more_colors'] = false;
+	// Custom Styles
+	// Reference: http://codex.wordpress.org/TinyMCE_Custom_Styles#Style_Format_Arguments
+	function my_mce_styles( $init_array ) {
+		$style_formats = array(
+			array(
+				'title' => 'Style 1',
+				'block' => 'div',
+				'classes' => 'style-class-1',
+				'wrapper' => true,
 
-		return $in;
+			),
+			array(
+				'title' => 'Red Button',
+				'selector' => 'a',
+				'classes' => 'red-button',
+				'wrapper' => false,
+			)
+		);
+		$init_array['style_formats'] = json_encode( $style_formats );
+		return $init_array;
 	}
-	add_filter('tiny_mce_before_init', 'myformatTinyMCE' );
+	add_filter( 'tiny_mce_before_init', 'my_mce_styles' );
+
+	// Customizing Options & Buttons
+	function custom_tinymce($options) {
+		$options['wordpress_adv_hidden'] = false;
+		$options['remove_linebreaks'] = false;
+		$options['gecko_spellcheck'] = true;
+		$options['theme_advanced_more_colors'] = false;
+		$options['theme_advanced_more_lists'] = true;
+		$options['content_css'] = get_template_directory_uri() . "/css/editor-style.css";
+
+		$options['theme_advanced_buttons1'] = 'bold,italic,underline,sup,bullist,numlist,blockquote,justifyleft,justifycenter,justifyright,link,unlink,hr,wp_more,wp_page,fullscreen';
+		$options['theme_advanced_buttons2'] = 'formatselect,styleselect,fontsizeselect,forecolor,pastetext,pasteword,removeformat,charmap,undo,redo';
+		$options['theme_advanced_blockformats'] = 'p,h1,h2,h3,h4,h5,h6,blockquote';
+		$options['theme_advanced_font_sizes'] = '0.75em,0.875em,1em,1.125em,1.25em,1.5em,1.75em,2em';
+		$options['theme_advanced_text_colors'] = 'ffffff,ba192c,20b7dd';
+
+		return $options;
+	}
+	add_filter('tiny_mce_before_init', 'custom_tinymce' );
 ?>

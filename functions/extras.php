@@ -7,7 +7,7 @@
 	/**
 	 * Human-friendly Post Dates
 	 *
-	 * Prints human friendly dates (ie. "2 days ago") if the post is less than 30 days old
+	 * Prints human friendly dates (ie. "2 days ago") if the post is less than 1 week old
 	 * Otherwise, it displays a standard datestamp
 	 */
 	function human_friendly_date() {
@@ -15,7 +15,7 @@
 		$today = date("r");
 		$postdate = get_the_time('r');
 		$difference = round((strtotime($today) - strtotime($postdate))/(24*60*60),0);
-			if ($difference >= 30) {
+			if ($difference >= 7) {
 				$humandate = the_time('F j, Y');
 			} else {
 				$humandate = human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
@@ -52,49 +52,6 @@
 		$return = is_object_in_term( $_post->ID, $tax, $term );
 		if ( is_wp_error( $return ) ) { return FALSE; }
 		return $return;
-	}
-
-
-	// Display ID# in posts, pages, category admin columns
-	function posts_columns_id($defaults){
-	    $defaults['wps_post_id'] = __('ID');
-	    return $defaults;
-	}
-	function posts_custom_id_columns($column_name, $id){
-	    if($column_name === 'wps_post_id'){
-	        echo $id; }
-	}
-	function categories_columns_id($columns) {
-		$columns['catID'] = __('ID');
-		return $columns;
-	}
-	function categories_custom_id_columns($argument, $columnName, $categoryID){
-		if($columnName == 'catID'){
-			return $categoryID; }
-	}
-	function media_columns_id($columns) {
-	    $columns['colID'] = __('ID');
-	    return $columns;
-	}
-	function media_custom_id_columns($columnName, $columnID){
-	    if($columnName == 'colID'){
-	       echo $columnID; }
-	}
-	function id_column_width() {
-	    echo '<style type="text/css">
-	        .column-wps_post_id, .column-catID, .column-colID { width: 4em; }
-	    </style>';
-	}
-	if ( current_user_can('administrator') ) {
-		add_filter('manage_posts_columns', 'posts_columns_id', 5);
-		add_action('manage_posts_custom_column', 'posts_custom_id_columns', 5, 2);
-		add_filter('manage_pages_columns', 'posts_columns_id', 5);
-		add_action('manage_pages_custom_column', 'posts_custom_id_columns', 5, 2);
-		add_filter('manage_edit-category_columns', 'categories_columns_id', 10);
-		add_filter('manage_category_custom_column', 'categories_custom_id_columns', 10, 3);
-		add_filter('manage_media_columns', 'media_columns_id', 10);
-		add_filter('manage_media_custom_column', 'media_custom_id_columns', 5, 2 );
-		add_action('admin_head', 'id_column_width');
 	}
 
 
