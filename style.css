@@ -300,7 +300,7 @@ a:focus {
 .entry .sticky,
 .entry .bypostauthor,
 .entry .gallery-caption {
-	display: normal;
+	display: block;
 }
 .entry .alignnone {
 	margin: 1em 1em 1em 0;
