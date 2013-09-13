@@ -5,7 +5,7 @@
 <!--[if gt IE 9]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
 
-	<title><?php wp_title('|',true,'right'); bloginfo('name'); ?></title>
+	<title><?php wp_title('|'); ?></title>
 
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Remove if not a responsive site -->
