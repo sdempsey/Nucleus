@@ -324,7 +324,12 @@ a:focus {
 }
 .entry img,
 .entry img[class*="align"],
-.entry img[class*="wp-image-"] {
+.entry img[class*="wp-image-"],
+.entry .size-auto,
+.entry .size-full,
+.entry .size-large,
+.entry .size-medium,
+.entry .size-thumbnail {
 	max-width: 100%;
 	height: auto;
 }
