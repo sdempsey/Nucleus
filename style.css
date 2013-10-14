@@ -18,6 +18,7 @@ Author URI: 	http://example.com
 	04 Header & Footer
 	05 Navigation
 	06 Page Defaults
+	-- Fonts
 
 */
 
@@ -75,8 +76,8 @@ td { vertical-align: top; }
 	02 DEFAULTS
 	-------------------------------------------------- */
 
-::-moz-selection 	{ background: #333; color:#fff; }
-::selection 	{ background: #333; color:#fff; }
+::-moz-selection 	{ background: #0096d2; color:#fff; }
+::selection 	{ background: #0096d2; color:#fff; }
 
 *,
 *:before,
@@ -94,11 +95,11 @@ body {
 	padding: 0;
 	margin: 0;
 	background: #fff;
-	color: #222222;
 	font-family: 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 	font-weight: normal;
 	font-style: normal;
-	line-height: 1;
+	line-height: 1.25;
+	-webkit-font-smoothing: antialiased;
 }
 a {
 	color: #0096d2;
@@ -152,20 +153,20 @@ a:focus {
 	-------------------------------------------------- */
 
 .entry h1 {
-	font-size: 3em;
+	font-size: 2em;
 	margin-top: 1.67em;
 	margin-bottom: .5em;
 }
 .entry h2 {
-	font-size: 2.5em;
+	font-size: 1.5em;
 	margin-top: 1.2em;
 	margin-bottom: .4em;
 }
 .entry h1 + h2 {
-	margin-top: -.2em;
+	margin-top: -.5em;
 }
 .entry h3 {
-	font-size: 1.5em;
+	font-size: 1.25em;
 	margin-top: 1.8em;
 	margin-bottom: .4em;
 }
@@ -174,7 +175,7 @@ a:focus {
 	margin-bottom: .2em;
 }
 .entry h4 {
-	font-size: 1.25em;
+	font-size: 1em;
 	margin-top: 1.8em;
 	margin-bottom: .4em;
 }
@@ -190,7 +191,7 @@ a:focus {
 	margin-top: -.3em;
 }
 .entry h6 {
-	font-size: .9em;
+	font-size: 1em;
 	margin-top: 1.8em;
 	margin-bottom: .4em;
 }
@@ -199,7 +200,15 @@ a:focus {
 }
 .entry p,
 .entry pre {
-	margin: 1em 0;
+	margin: 1em 0 0;
+}
+.entry p {
+	word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 .entry abbr[title] {
 	border-bottom: 1px dotted;
@@ -209,6 +218,18 @@ a:focus {
 }
 .entry blockquote {
 	margin: 1em 40px;
+}
+.entry blockquote p {
+	font-style: italic;
+}
+.entry blockquote p:before {
+	 content: "\201C";
+	 display: inline-block;
+	 padding-right: .1em;
+}
+.entry blockquote p:after {
+	 content: "\201D";
+	 display: inline-block;
 }
 .entry dfn {
 	font-style: italic;
@@ -348,10 +369,6 @@ a:focus {
 .entry img.aligncenter{
 	display: block;
 	margin: 1em auto;
-}
-.entry img#wpstats {
-	display: block;
-	margin: 0 auto;
 }
 .entry img[class*="align"],
 .entry img[class*="wp-image-"],
