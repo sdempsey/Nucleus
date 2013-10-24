@@ -5,6 +5,26 @@
 	require_once locate_template('/functions/extras.php');
 	require_once locate_template('/functions/pagination.php');
 
+
+/*	----------------------------------------------------------------------------------------------------
+	 GLOBAL VARIABLES
+	---------------------------------------------------------------------------------------------------- */
+
+	// WP Site Vars
+	define( 'WWW_URL', site_url() );
+	define( 'THEME_DIR', get_template_directory_uri() );
+	define( 'TEMP_DIR', get_template_directory() );
+	define( 'SITE_NAME', get_option('blogname') );
+	define( 'AUTHOR', SITE_NAME . " - ". WWW_URL );
+
+	// Exterior Acct Vars
+	define('TYPEKIT', 'abcd12345');
+	define('TWITTER_USERNAME', 'username');
+	define('FB_APP_ID', '12345678910');
+	define('FB_PAGE', 'https://www.facebook.com/fb-page');
+	define('PINTEREST_USERNAME', 'username' );
+
+
 /*	----------------------------------------------------------------------------------------------------
 	 SCRIPTS AND STYLESHEETS
 	---------------------------------------------------------------------------------------------------- */
@@ -13,7 +33,6 @@
 
 		wp_enqueue_style( 'screen', get_stylesheet_uri(), '', '1.0', 'screen' );
 
-		wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/modernizr.js' );
 		wp_enqueue_script( 'site', get_template_directory_uri() . '/scripts/site.js', array('jquery'), '1.0', true );
 	}
 	add_action( 'wp_enqueue_scripts', 'script_enqueuer' );
@@ -44,6 +63,7 @@
 		'main_navigation' => 'Main Navigation',
 		'footer_navigation' => 'Footer Navigation'
 	));
+
 
 
 /*	----------------------------------------------------------------------------------------------------
