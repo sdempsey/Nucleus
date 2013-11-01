@@ -33,6 +33,7 @@
 
 		wp_enqueue_style( 'screen', get_stylesheet_uri(), '', '1.0', 'screen' );
 
+		wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/modernizr.js', null, null, true );
 		wp_enqueue_script( 'site', get_template_directory_uri() . '/scripts/site.js', array('jquery'), '1.0', true );
 	}
 	add_action( 'wp_enqueue_scripts', 'script_enqueuer' );
