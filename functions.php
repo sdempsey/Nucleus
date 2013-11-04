@@ -92,11 +92,13 @@
 	---------------------------------------------------------------------------------------------------- */
 
 	// Email Encode Shortcode
-	// http://bavotasan.com/2012/shortcode-to-encode-email-in-wordpress-posts
-	function email_encode_function( $atts, $content ){
-		return '<a href="'.antispambot("mailto:".$content).'">'.antispambot($content).'</a>';
+	// http://codex.wordpress.org/Function_Reference/antispambot
+	function email_encode_function($atts , $content = null){
+		if (!is_email ($content))
+			return;
+		return '<a href="mailto:'.antispambot($content).'">'.antispambot($content).'</a>';
 	}
-	add_shortcode( 'email', 'email_encode_function' );
+	add_shortcode( 'email','email_encode_function');
 
 	// Simple shortcode
 	// function custom_shortcode_x( $atts, $content = null ) {
