@@ -186,4 +186,11 @@
 		return $options;
 	}
 	add_filter('tiny_mce_before_init', 'custom_tinymce' );
+
+	// Advanced Custom Fields WYSIWYG
+	function my_toolbars( $toolbars ) {
+		$toolbars['Full' ][2] = array('formatselect','styleselect','fontselect', 'fontsizeselect','forecolor','pastetext','pasteword','removeformat','charmap','undo','redo','code' );
+		return $toolbars;
+	}
+	add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
 ?>
