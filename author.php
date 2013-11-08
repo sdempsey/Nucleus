@@ -12,9 +12,14 @@
 
 	<?php rewind_posts(); while ( have_posts() ) : the_post(); ?>
 	<article id="post-<?php the_ID(); ?>">
-		<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+		<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 		<p class="date"><?php human_friendly_date(); ?></p>
-		<?php the_excerpt(); ?>
+		<?php
+		if( strpos($post->post_content, '<!--more-->') >= 1 ) {
+			the_content('Read more &rarr;');
+		} else {
+			the_excerpt();
+		} ?>
 	</article>
 	<?php endwhile; ?>
 
