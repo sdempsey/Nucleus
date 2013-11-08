@@ -44,14 +44,6 @@
 	add_action("login_head", "custom_login_logo");
 
 
-	// Change default type for +New admin bar link to New Page
-	function my_admin_bar_menu( $wp_admin_bar ) {
-		$newpage = $wp_admin_bar->get_node( 'new-page' );
-		$wp_admin_bar->add_node( array( 'id' => 'new-content', 'href' => $newpage->href, ) );
-	}
-	add_action( 'admin_bar_menu', 'my_admin_bar_menu', 100 );
-
-
 	// Remove admin menus from sidebar for non-admins
 	//function remove_admin_menu_items() {
 	//	$remove_menu_items = array(
