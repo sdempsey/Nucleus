@@ -233,6 +233,7 @@ a:focus {
 	font-style: italic;
 }
 .entry hr {
+	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 	clear: both;
@@ -359,7 +360,7 @@ a:focus {
 	padding: 0;
 }
 .entry img.alignright {
-	margin-left: 1em 0 1em 1em;
+	margin: 1em 0 1em 1em;
 }
 .entry img.alignleft {
 	margin: 1em 1em 1em 0;
