@@ -5,26 +5,6 @@
 	require_once locate_template('/functions/extras.php');
 	require_once locate_template('/functions/pagination.php');
 
-
-/*	----------------------------------------------------------------------------------------------------
-	 GLOBAL VARIABLES
-	---------------------------------------------------------------------------------------------------- */
-
-	// WP Site Vars
-	define( 'WWW_URL', site_url() );
-	define( 'THEME_DIR', get_template_directory_uri() );
-	define( 'TEMP_DIR', get_template_directory() );
-	define( 'SITE_NAME', get_option('blogname') );
-	define( 'AUTHOR', SITE_NAME . " - ". WWW_URL );
-
-	// Exterior Acct Vars
-	define('TYPEKIT', 'abcd12345');
-	define('TWITTER_USERNAME', 'username');
-	define('FB_APP_ID', '12345678910');
-	define('FB_PAGE', 'https://www.facebook.com/fb-page');
-	define('PINTEREST_USERNAME', 'username' );
-
-
 /*	----------------------------------------------------------------------------------------------------
 	 SCRIPTS AND STYLESHEETS
 	---------------------------------------------------------------------------------------------------- */
