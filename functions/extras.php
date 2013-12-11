@@ -43,11 +43,12 @@
         $today = date("r");
         $postdate = get_the_time('r');
         $difference = round((strtotime($today) - strtotime($postdate))/(24*60*60),0);
-            if ($difference >= 7) {
-                $humandate = the_time('F j, Y');
-            } else {
-                $humandate = human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
-            }
+        if ($difference >= 7) {
+            $humandate = the_time('F j, Y');
+        } else {
+            $humandate = human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
+        }
+        $humandate = str_replace('mins', 'minutes', $humandate);
         echo $humandate;
     }
 
