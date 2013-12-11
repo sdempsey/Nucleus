@@ -5,6 +5,18 @@
 	require_once locate_template('/functions/extras.php');
 	require_once locate_template('/functions/pagination.php');
 
+
+/*  ----------------------------------------------------------------------------------------------------
+     GLOBAL VARIABLES
+    ---------------------------------------------------------------------------------------------------- */
+
+	// Social account URLs
+	define('TWITTER_URL', 'https://twitter.com/smuttynosebeer');
+	define('FACEBOOK_URL', 'http://www.facebook.com/Smuttynose');
+	define('INSTAGRAM_URL', 'http://instagram.com/smuttynosebeer');
+	define('YOUTUBE_URL', 'http://www.youtube.com/channel/HCyTiNP1MGrew');
+
+
 /*	----------------------------------------------------------------------------------------------------
 	 SCRIPTS AND STYLESHEETS
 	---------------------------------------------------------------------------------------------------- */
