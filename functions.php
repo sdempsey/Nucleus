@@ -48,8 +48,11 @@
 
 	add_theme_support( 'post-thumbnails' );
 
-	// Increase JPG compression to 70%
-	add_filter('jpeg_quality', function($arg){return 70;});
+	// Increase JPG compression
+	function jpeg_custom_quality( $quality ) {
+		return 70;
+	}
+	add_filter( 'jpeg_quality', 'jpeg_custom_quality' );
 
 /*	----------------------------------------------------------------------------------------------------
 	 MENUS
