@@ -48,6 +48,20 @@
 
 	add_theme_support( 'post-thumbnails' );
 
+
+	// Define custom image sizes
+	//add_image_size('your_custom_size', 1000, 500, true);
+
+
+	// Add human-readable names for custom image sizes to admin
+	//function vtl_custom_sizes( $sizes ) {
+	//    return array_merge( $sizes, array(
+	//        'your_custom_size' => __('Your Custom Size Name'),
+	//    ) );
+	//}
+	//add_filter( 'image_size_names_choose', 'vtl_custom_sizes' );
+
+
 	// Increase JPG compression
 	function jpeg_custom_quality( $quality ) {
 		return 70;
