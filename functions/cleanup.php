@@ -83,24 +83,6 @@
 	add_filter('post_thumbnail_html', 'remove_self_closing_tags'); // <img />
 
 
-	// Add slug to body classes
-	function add_slug_to_body_class($classes) {
-	    global $post;
-	    if (is_home()) {
-	        $key = array_search('blog', $classes);
-	        if ($key > -1) {
-	            unset($classes[$key]);
-	        }
-	    } elseif (is_page()) {
-	        $classes[] = sanitize_html_class($post->post_name);
-	    } elseif (is_singular()) {
-	        $classes[] = sanitize_html_class($post->post_name);
-	    }
-	    return $classes;
-	}
-	add_filter('body_class', 'add_slug_to_body_class');
-
-
 	// Add body class if sidebar is active
 	function add_body_sidebar_class($classes) {
 	    if (is_active_sidebar('sidebar')) {
