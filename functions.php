@@ -4,17 +4,7 @@
 	require_once locate_template('/functions/comments.php');
 	require_once locate_template('/functions/extras.php');
 	require_once locate_template('/functions/pagination.php');
-
-
-/*  ----------------------------------------------------------------------------------------------------
-     GLOBAL VARIABLES
-    ---------------------------------------------------------------------------------------------------- */
-
-	// Social account URLs
-	define('TWITTER_URL', 'https://twitter.com/smuttynosebeer');
-	define('FACEBOOK_URL', 'http://www.facebook.com/Smuttynose');
-	define('INSTAGRAM_URL', 'http://instagram.com/smuttynosebeer');
-	define('YOUTUBE_URL', 'http://www.youtube.com/channel/HCyTiNP1MGrew');
+	require_once locate_template('/functions/social.php');
 
 
 /*	----------------------------------------------------------------------------------------------------
@@ -25,8 +15,8 @@
 
 		wp_enqueue_style( 'screen', get_stylesheet_uri(), '', '1.0', 'screen' );
 
-		wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/modernizr.js', null, null, true );
-		wp_enqueue_script( 'site', get_template_directory_uri() . '/scripts/site.js', array('jquery'), '1.0', true );
+		wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', null, '2.7.1', true );
+		wp_enqueue_script( 'site', get_template_directory_uri() . '/scripts/site/main.js', array('jquery'), '1.0', true );
 	}
 	add_action( 'wp_enqueue_scripts', 'script_enqueuer' );
 
@@ -41,6 +31,7 @@
 		}
 	}
 	add_action('wp_head', 'add_ie_scripts', 1);
+
 
 /*	----------------------------------------------------------------------------------------------------
 	 IMAGES
@@ -68,6 +59,7 @@
 	}
 	add_filter( 'jpeg_quality', 'jpeg_custom_quality' );
 
+
 /*	----------------------------------------------------------------------------------------------------
 	 MENUS
 	---------------------------------------------------------------------------------------------------- */
@@ -76,7 +68,6 @@
 		'main_navigation' => 'Main Navigation',
 		'footer_navigation' => 'Footer Navigation'
 	));
-
 
 
 /*	----------------------------------------------------------------------------------------------------
@@ -95,6 +86,7 @@
 	//		'after_title'   => '</h2>'
 	//	));
 	//}
+
 
 /*	----------------------------------------------------------------------------------------------------
 	 CUSTOM SHORTCODES
@@ -148,6 +140,25 @@
 	//     return $classes;
 	//}
 	//add_filter( 'body_class', 'custom_body_classes');
+
+
+/*  ----------------------------------------------------------------------------------------------------
+     GLOBAL VARIABLES
+    ---------------------------------------------------------------------------------------------------- */
+
+	// SOCIAL NETWORK PROFIL URLs
+	// Values: Set in Appearance > Social
+	// Usage: echo TWITTER_URL;
+	global $vtl_social_settings;
+	$social_urls = get_option( 'vtl_social_settings', $vtl_social_settings );
+
+    define('TWITTER_URL', 'http://' . $social_urls['twitter_url']);
+    define('FACEBOOK_URL', 'http://' . $social_urls['facebook_url']);
+    define('GOOGLE_URL', 'http://' . $social_urls['google_url']);
+    define('YOUTUBE_URL', 'http://' . $social_urls['youtube_url']);
+    define('LINKEDIN_URL', 'http://' . $social_urls['linkedin_url']);
+    define('INSTAGRAM_URL', 'http://' . $social_urls['instagram_url']);
+    define('PINTEREST_URL', 'http://' . $social_urls['pinterest_url']);
 
 
 /*	----------------------------------------------------------------------------------------------------
