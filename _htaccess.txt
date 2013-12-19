@@ -288,9 +288,9 @@ AddDefaultCharset utf-8
                                   text/plain \
                                   text/x-component \
                                   text/xml
-		<FilesMatch "\.(ttf|otf|eot|svg)$" >
-		SetOutputFilter DEFLATE
-		</FilesMatch>
+        <FilesMatch "\.(ttf|otf|eot|svg)$" >
+        SetOutputFilter DEFLATE
+        </FilesMatch>
 
 </IfModule>
 
