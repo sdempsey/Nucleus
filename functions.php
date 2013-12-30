@@ -65,8 +65,8 @@
     ---------------------------------------------------------------------------------------------------- */
 
     register_nav_menus(array(
-        'main_navigation' => 'Main Navigation',
-        'footer_navigation' => 'Footer Navigation'
+        'main_nav' => 'Main Navigation',
+        'footer_nav' => 'Footer Navigation'
     ));
 
 
