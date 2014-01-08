@@ -1,11 +1,13 @@
 <?php
 
-    /**
-     * Smart Excerpt
-     * http://www.distractedbysquirrels.com/blog/wordpress-improved-dynamic-excerpt
-     *
-     * Returns an excerpt which is not longer than the given length and always ends with a complete sentence.
-     */
+/* ==========================================================================
+    SMART EXCERPT
+    http://www.distractedbysquirrels.com/blog/wordpress-improved-dynamic-excerpt
+
+    Returns an excerpt which is not longer than the given length and always
+    ends with a complete sentence.
+   ========================================================================== */
+
     function vtl_smart_excerpt($length) { // Max excerpt length. Length is set in characters
         global $post;
         $text = $post->post_excerpt;
@@ -32,12 +34,13 @@
     }
 
 
-    /**
-     * Human-friendly Post Dates
-     *
-     * Prints human friendly dates (ie. "2 days ago") if the post is less than 1 week old
-     * Otherwise, it displays a standard datestamp
-     */
+/* ==========================================================================
+    HUMAN-FRIENDLY POST DATES
+
+    Prints human friendly dates (ie. "2 days ago") if the post is less than
+    one week old. Otherwise, it displays a standard datestamp.
+   ========================================================================== */
+
     function human_friendly_date() {
         global $post;
         $today = date("r");
@@ -53,10 +56,13 @@
     }
 
 
-    /**
-     * IS_TREE TEST
-     * is_tree('value');
-     */
+/* ==========================================================================
+    IS_TREE
+
+    Test if page is parent or ancester of specific page ID.
+    USAGE: if ( is_tree('value') ) { ... }
+   ========================================================================== */
+
     function is_tree( $pid ) {
         global $post;
         if ( is_page($pid) )
@@ -70,11 +76,14 @@
     }
 
 
-    /**
-     * CUSTOM TAXONOMY TEST
-     * Example: has_custom_tax('taxonomy_name','slug');
-     * Example: has_custom_tax('taxonomy_name', array('slug1', 'slug2', 'slug3'));
-     */
+/* ==========================================================================
+    HAS_CUSTOM_TAX
+
+    Test for custom taxonomy.
+    EXAMPLE: has_custom_tax('taxonomy_name','slug');
+    EXAMPLE: has_custom_tax('taxonomy_name', array('slug1', 'slug2', 'slug3'));
+   ========================================================================== */
+
     function has_custom_tax($tax, $term, $_post = NULL) {
         if ( !$tax || !$term ) { return FALSE; }
         if ( $_post ) {
@@ -89,10 +98,11 @@
     }
 
 
-    /**
-     * ADD CUSTOM CLASSES FIELD ON WIDGETS
-     * http://kucrut.org/add-custom-classes-to-any-widget
-     */
+/* ==========================================================================
+    ADD CUSTOM CLASSES FIELD TO WIDGETS
+    http://kucrut.org/add-custom-classes-to-any-widget
+   ========================================================================== */
+
     function kc_widget_form_extend( $instance, $widget ) {
         if ( !isset($instance['classes']) )
             $instance['classes'] = null;
@@ -124,9 +134,10 @@
     add_filter( 'dynamic_sidebar_params', 'kc_dynamic_sidebar_params' );
 
 
-    /**
-     * BREADCRUMBS
-     */
+/* ==========================================================================
+    BREADCRUMBS
+   ========================================================================== */
+
     function vtl_page_breadcrumbs() {
         $delimiter = ':';
         $currentBefore = '<span class="current">';
@@ -155,60 +166,4 @@
         echo '</div>';
         }
     }
-
-    /**
-     * COLOR MY POSTS
-     * Color post rows depending on the posts' status
-     * http://remicorson.com/color-my-posts
-     */
-    class rc_color_my_posts {
-        function __construct() {
-            add_action('admin_footer', array( &$this,'rc_color_my_admin_posts') );
-        }
-        function rc_color_my_admin_posts(){
-            echo "<style>
-                /* Color by post Status */
-                .status-draft { background: #ffffe0 !important;}
-                .status-future { background: #E9F2D3 !important;}
-                .status-publish {}
-                .status-pending { background: #D3E4ED !important;}
-                .status-private { background: #FFECE6 !important;}
-                .post-password-required { background: #ff9894 !important;}
-
-                /* Color by author data */
-                .author-self {}
-                .author-other {}
-
-                /* Color by post format */
-                .format-aside {}
-                .format-gallery {}
-                .format-link {}
-                .format-image {}
-                .format-quote {}
-                .format-status {}
-                .format-video {}
-                .format-audio {}
-                .format-chat {}
-                .format-standard {}
-
-                /* Color by post category (change blog by the category slug) */
-                .category-blog {}
-
-                /* Color by custom post type (change xxxxx by the custom post type slug) */
-                .xxxxx {}
-                .type-xxxxx {}
-
-                /* Color by post ID (change xxxxx by the post ID) */
-                .post-xxxxx {}
-
-                /* Color by post tag (change xxxxx by the tag slug) */
-                .tag-xxxxx {}
-
-                /* Color hAtom compliance */
-                .hentry {}
-
-            </style>";
-        }
-    }
-    $GLOBALS['color_my_posts'] = new rc_color_my_posts();
 ?>

@@ -1,10 +1,12 @@
 <?php
 
-/*  ----------------------------------------------------------------------------------------------------
-     COMMENTS
-    ---------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    COMMENTS
+   ========================================================================== */
 
-    //  Removes Trackbacks from the comment count
+/*  Remove trackbacks from comment count
+   -------------------------------------------------------------------------- */
+
     function comment_count( $count ) {
         if ( ! is_admin() ) {
             global $id;
@@ -16,7 +18,9 @@
     }
     add_filter('get_comments_number', 'comment_count', 0);
 
-    //  Invite rss subscribers to comment
+/*  Invite rss subscribers to comment
+   -------------------------------------------------------------------------- */
+
     function rss_comment_footer($content) {
         if (is_feed()) {
             if (comments_open()) {

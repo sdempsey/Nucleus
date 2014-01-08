@@ -4,12 +4,10 @@
     require_once locate_template('/functions/comments.php');
     require_once locate_template('/functions/extras.php');
     require_once locate_template('/functions/pagination.php');
-    require_once locate_template('/functions/social.php');
 
-
-/*  ----------------------------------------------------------------------------------------------------
-     SCRIPTS AND STYLESHEETS
-    ---------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    SCRIPTS AND STYLESHEETS
+   ========================================================================== */
 
     function script_enqueuer() {
 
@@ -21,7 +19,9 @@
     add_action( 'wp_enqueue_scripts', 'script_enqueuer' );
 
 
-    // IE-specific assets
+/*  IE-specific
+   -------------------------------------------------------------------------- */
+
     function add_ie_scripts () {
         global $is_IE;
         if ($is_IE) {
@@ -33,18 +33,29 @@
     add_action('wp_head', 'add_ie_scripts', 1);
 
 
-/*  ----------------------------------------------------------------------------------------------------
-     IMAGES
-    ---------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    IMAGES & MEDIA
+   ========================================================================== */
 
     add_theme_support( 'post-thumbnails' );
 
 
-    // Define custom image sizes
+/* ==========================================================================
+    Oembed object maximum width
+   ========================================================================== */
+
+    if ( !isset( $content_width ) )
+        $content_width = 660;
+
+/*  Custom image sizes
+   -------------------------------------------------------------------------- */
+
     //add_image_size('your_custom_size', 1000, 500, true);
 
 
-    // Add human-readable names for custom image sizes to admin
+/*  Human-readable custom image names
+   -------------------------------------------------------------------------- */
+
     //function vtl_custom_sizes( $sizes ) {
     //    return array_merge( $sizes, array(
     //        'your_custom_size' => __('Your Custom Size Name'),
@@ -53,16 +64,18 @@
     //add_filter( 'image_size_names_choose', 'vtl_custom_sizes' );
 
 
-    // Increase JPG compression
+/*  JPG compression
+   -------------------------------------------------------------------------- */
+
     function jpeg_custom_quality( $quality ) {
         return 70;
     }
     add_filter( 'jpeg_quality', 'jpeg_custom_quality' );
 
 
-/*  ----------------------------------------------------------------------------------------------------
-     MENUS
-    ---------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    MENUS
+   ========================================================================== */
 
     register_nav_menus(array(
         'main_nav' => 'Main Navigation',
@@ -70,9 +83,9 @@
     ));
 
 
-/*  ----------------------------------------------------------------------------------------------------
-     WIDGET AREAS
-    ---------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    WIDGETS
+   ========================================================================== */
 
     //if (function_exists('register_sidebar')) {
     //  register_sidebar(array(
@@ -88,18 +101,21 @@
     //}
 
 
-/*  ----------------------------------------------------------------------------------------------------
-     CUSTOM SHORTCODES
-    ---------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    SHORTCODES
+   ========================================================================== */
 
-    // Email Encode Shortcode
-    // http://codex.wordpress.org/Function_Reference/antispambot
+/*  Email Encode
+    http://codex.wordpress.org/Function_Reference/antispambot
+   -------------------------------------------------------------------------- */
+
     function email_encode_function($atts , $content = null){
         if (!is_email ($content))
             return;
         return '<a href="mailto:'.antispambot($content).'">'.antispambot($content).'</a>';
     }
     add_shortcode( 'email','email_encode_function');
+
 
     // Simple shortcode
     // function custom_shortcode_x( $atts, $content = null ) {
@@ -124,49 +140,35 @@
     // add_shortcode( 'bartag', 'bartag_func' );
 
 
-/*  ----------------------------------------------------------------------------------------------------
-     SITE-SPECIFIC
-    ---------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    SITE-SPECIFIC
+   ========================================================================== */
 
-    // Set a maximum width for Oembedded objects. Prevents user from busting layout widths.
-    if ( !isset( $content_width ) )
-        $content_width = 660;
+/*  Customize login
+  -------------------------------------------------------------------------- */
 
-    // Set custom classes on <body>. More useful than .page-id-XX classes
-    //function custom_body_classes( $classes ) {
-    //     if ( is_page(7) || is_category(5) || is_tag('neat') )
-    //          $classes[] = 'neat-stuff';
-    //
-    //     return $classes;
-    //}
-    //add_filter( 'body_class', 'custom_body_classes');
-
-
-/*  ----------------------------------------------------------------------------------------------------
-     GLOBAL VARIABLES
-    ---------------------------------------------------------------------------------------------------- */
-
-    // SOCIAL NETWORK PROFIL URLs
-    // Values: Set in Appearance > Social
-    // Usage: echo TWITTER_URL;
-    global $vtl_social_settings;
-    $social_urls = get_option( 'vtl_social_settings', $vtl_social_settings );
-
-    define('TWITTER_URL', 'http://' . $social_urls['twitter_url']);
-    define('FACEBOOK_URL', 'http://' . $social_urls['facebook_url']);
-    define('GOOGLE_URL', 'http://' . $social_urls['google_url']);
-    define('YOUTUBE_URL', 'http://' . $social_urls['youtube_url']);
-    define('LINKEDIN_URL', 'http://' . $social_urls['linkedin_url']);
-    define('INSTAGRAM_URL', 'http://' . $social_urls['instagram_url']);
-    define('PINTEREST_URL', 'http://' . $social_urls['pinterest_url']);
+   function custom_login_logo() {
+       echo "<style>
+       body.login #login h1 a {
+           background: url('".get_bloginfo('template_url')."/images/custom-logo.png') no-repeat scroll center top transparent;
+           width: 274px;
+           height: 63px;
+       }
+       </style>";
+   }
+   add_filter('login_headerurl', create_function(false,"return '".home_url()."';")); // Logo link
+   add_filter('login_headertitle', create_function(false,"return 'Powered by WordPress';")); // Logo tooltip text
+   add_action("login_head", "custom_login_logo");
 
 
-/*  ----------------------------------------------------------------------------------------------------
-     TINYMCE CUSTOMIZATIONS
-    ---------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    TINYMCE
+   ========================================================================== */
 
-    // Custom Styles
-    // Reference: http://codex.wordpress.org/TinyMCE_Custom_Styles#Style_Format_Arguments
+/*  Custom Styles
+    http://codex.wordpress.org/TinyMCE_Custom_Styles#Style_Format_Arguments
+   -------------------------------------------------------------------------- */
+
     function my_mce_styles( $init_array ) {
         $style_formats = array(
             array(
@@ -188,7 +190,9 @@
     }
     add_filter( 'tiny_mce_before_init', 'my_mce_styles' );
 
-    // Customizing Options & Buttons
+/*  Options & Buttons
+   -------------------------------------------------------------------------- */
+
     function custom_tinymce($options) {
         $options['wordpress_adv_hidden'] = false;
         $options['remove_linebreaks'] = false;
@@ -207,7 +211,9 @@
     }
     add_filter('tiny_mce_before_init', 'custom_tinymce' );
 
-    // Advanced Custom Fields WYSIWYG
+/*  Advanced Custom Fields WYSIWYG Buttons
+   -------------------------------------------------------------------------- */
+
     function my_toolbars( $toolbars ) {
         $toolbars['Full' ][2] = array('formatselect','styleselect','fontselect', 'fontsizeselect','forecolor','pastetext','pasteword','removeformat','charmap','undo','redo','code' );
         return $toolbars;

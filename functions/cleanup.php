@@ -1,10 +1,12 @@
 <?php
 
-/*  --------------------------------------------------------------------------------------------------
-     CLEAN UP FRONT-END OUTPUT
-    -------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    CLEANUP FRONT-END OUTPUT
+   ========================================================================== */
 
-    // Clean up wp_head()
+/*  Clean up wp_head()
+   -------------------------------------------------------------------------- */
+
     function head_cleanup() {
         remove_action( 'wp_head', 'feed_links_extra', 3 );
         remove_action( 'wp_head', 'feed_links', 2 );
@@ -19,7 +21,8 @@
     add_action('init', 'head_cleanup');
 
 
-    // Clean up output of stylesheet <link> tags
+/*  Clean up output of stylesheet <link> tags
+   -------------------------------------------------------------------------- */
     function clean_style_tag($input) {
         preg_match_all("!<link rel='stylesheet'\s?(id='[^']+')?\s+href='(.*)' type='text/css' media='(.*)' />!", $input, $matches);
         // Only display media if it is meaningful
@@ -29,7 +32,9 @@
     add_filter('style_loader_tag', 'clean_style_tag');
 
 
-    // Remove search functionality if not needed
+/*  Remove search functionality if not needed
+   -------------------------------------------------------------------------- */
+
     //function fb_filter_query( $query, $error = true ) {
     //  if ( is_search() ) {
     //      $query->is_search = false;
@@ -44,14 +49,18 @@
     //add_filter( 'get_search_form', create_function( '$a', "return null;" ) );
 
 
-    // Stop wrapping images in <p>
+/*  Stop wrapping images in <p>
+   -------------------------------------------------------------------------- */
+
     function filter_ptags_on_images($content) {
         return preg_replace('/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content);
     }
     add_filter('the_content', 'filter_ptags_on_images');
 
 
-    // Clean up shortcode output
+/*  Clean up shortcode output
+   -------------------------------------------------------------------------- */
+
     function clean_shortcodes($content){
         $array = array (
             '<p>[' => '[',
@@ -64,17 +73,19 @@
     add_filter('the_content', 'clean_shortcodes');
 
 
-    /**
-     * Wrap embedded media as suggested by Readability
-     * http://www.readability.com/publishers/guidelines#publisher
-     */
+/*  Wrap embedded media in container
+    http://www.readability.com/publishers/guidelines#publisher
+   -------------------------------------------------------------------------- */
+
     function embed_wrap($cache, $url, $attr = '', $post_ID = '') {
         return '<div class="entry-content-asset">' . $cache . '</div>';
     }
     add_filter('embed_oembed_html', 'embed_wrap', 10, 4);
 
 
-    // Remove unnecessary self-closing tags
+/*  Remove unnecessary self-closing tags
+   -------------------------------------------------------------------------- */
+
     function remove_self_closing_tags($input) {
         return str_replace(' />', '>', $input);
     }
@@ -83,7 +94,9 @@
     add_filter('post_thumbnail_html', 'remove_self_closing_tags'); // <img />
 
 
-    // Add body class if sidebar is active
+/*  Add body class if sidebar is active
+   -------------------------------------------------------------------------- */
+
     function add_body_sidebar_class($classes) {
         if (is_active_sidebar('sidebar')) {
             $classes[] = 'has-sidebar';
@@ -93,19 +106,9 @@
     add_filter('body_class','add_body_sidebar_class');
 
 
-    // Custom excerpt
-    function custom_excerpt_length( $length ) {
-        return 40; // number of words
-    }
-    function custom_excerpt_more($more) {
-        global $post;
-        return '&hellip; <a class="more" href="'. get_permalink($post->ID) . '">Read more &rarr;</a>';
-    }
-    add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
-    add_filter('excerpt_more', 'custom_excerpt_more');
+/*  Remove #more jump link on posts
+   -------------------------------------------------------------------------- */
 
-
-    // Remove #more jump link on posts
     function remove_more_link_scroll( $link ) {
         $link = preg_replace( '|#more-[0-9]+|', '', $link );
         return $link;
@@ -113,7 +116,9 @@
     add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
 
 
-    // Remove width and height from wp-caption
+/*  Remove width and height from wp-caption
+   -------------------------------------------------------------------------- */
+
     function fixed_img_caption_shortcode($attr, $content = null) {
         if ( ! isset( $attr['caption'] ) ) {
             if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
@@ -132,7 +137,9 @@
     add_shortcode('caption', 'fixed_img_caption_shortcode');
 
 
-    // Add featured images to RSS feed
+/*  Add featured images to RSS feed
+   -------------------------------------------------------------------------- */
+
     function rss_post_thumbnail($content) {
         global $post;
         if(has_post_thumbnail($post->ID)) {
@@ -145,7 +152,9 @@
     add_filter('the_content_feed', 'rss_post_thumbnail');
 
 
-    // Add a class to the last post in a loop
+/*  Add a class to the last post in a loop
+   -------------------------------------------------------------------------- */
+
     function last_post_class($classes){
         global $wp_query;
         if(($wp_query->current_post+1) == $wp_query->post_count) $classes[] = 'last';
@@ -153,11 +162,14 @@
     }
     add_filter('post_class', 'last_post_class');
 
-/*  --------------------------------------------------------------------------------------------------
-     CLEAN UP BACK-END
-    -------------------------------------------------------------------------------------------------- */
 
-    // Remove unnecessary dashboard widgets
+/* ==========================================================================
+    CLEANUP BACK-END
+   ========================================================================== */
+
+/*  Remove unnecessary dashboard widgets
+   -------------------------------------------------------------------------- */
+
     function remove_dashboard_widgets() {
         remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');
         remove_meta_box('dashboard_plugins', 'dashboard', 'normal');
@@ -167,10 +179,13 @@
     add_action('admin_init', 'remove_dashboard_widgets');
 
 
-/*  --------------------------------------------------------------------------------------------------
-     NICE SEARCH by Mark Jaquith - http://txfx.net/wordpress-plugins/nice-search
-     Redirects search results from /?s=query to /search/query/, converts %20 to +
-    -------------------------------------------------------------------------------------------------- */
+/* ==========================================================================
+    NICE SEARCH by Mark Jaquith
+    http://txfx.net/wordpress-plugins/nice-search
+
+    Redirects search results from /?s=query to /search/query/
+    and converts %20 to +
+   ========================================================================== */
 
     function cws_nice_search_redirect() {
         global $wp_rewrite;
