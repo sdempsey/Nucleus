@@ -44,7 +44,7 @@
 
     function remove_admin_menu_items() {
       $remove_menu_items = array(
-          __('Comments'),
+      //    __('Comments'),
       //    __('Media'),
       //    __('Pages'),
       //    __('Plugins'),
@@ -74,8 +74,7 @@
       // Remove
       $wp_admin_bar->remove_menu('wp-logo');
       $wp_admin_bar->remove_menu('comments');
-      $wp_admin_bar->remove_menu('new-link', 'new-content');
-      $wp_admin_bar->remove_menu('new-post', 'new-content');
+      //$wp_admin_bar->remove_menu('new-post', 'new-content');
       $wp_admin_bar->remove_menu('my-account');
       // Add
       $wp_admin_bar->add_menu( array(
