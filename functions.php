@@ -11,6 +11,8 @@
 
     function script_enqueuer() {
 
+        wp_enqueue_style( 'reset', get_template_directory_uri() . '/css/reset.css', '1.0', 'screen' );
+        wp_enqueue_style( 'fonts', get_template_directory_uri() . '/css/fonts.css', '1.0', 'screen' );
         wp_enqueue_style( 'screen', get_stylesheet_uri(), '', '1.0', 'screen' );
 
         wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', null, '2.7.1', true );
