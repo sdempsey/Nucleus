@@ -162,6 +162,7 @@ a:focus {
     margin: 1em 0 0;
 }
 .entry p {
+    word-wrap: break-word;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
