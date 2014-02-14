@@ -26,7 +26,7 @@
         if( $excerpt ) {
             echo apply_filters('the_excerpt',$excerpt);
         } else {
-            echo apply_filters('the_excerpt',$text);
+            echo apply_filters('the_excerpt',$text . '…');
         }
     }
     function reverse_strrchr($haystack, $needle, $trail) {
