@@ -204,8 +204,11 @@
         $options['content_css'] = get_template_directory_uri() . "/css/editor-style.css";
 
         $options['theme_advanced_buttons1'] = 'bold,italic,underline,sup,bullist,numlist,blockquote,justifyleft,justifycenter,justifyright,link,unlink,hr,wp_more,wp_page,fullscreen';
-        $options['theme_advanced_buttons2'] = 'formatselect,styleselect,fontsizeselect,forecolor,pastetext,pasteword,removeformat,charmap,undo,redo';
+        $options['theme_advanced_buttons2'] = 'formatselect,styleselect,fontselect,fontsizeselect,forecolor,pastetext,pasteword,removeformat,charmap,undo,redo';
         $options['theme_advanced_blockformats'] = 'p,h1,h2,h3,h4,h5,h6,blockquote';
+        $options['theme_advanced_fonts'] = 'Helvetica=Helvetica Neue, Helvetica, Arial, sans-serif;'.
+                                           'Custom Font=Custom Font, Helvetica Neue, Helvetica, Arial, sans-serif;'.
+                                           '';
         $options['theme_advanced_font_sizes'] = '0.75em,0.875em,1em,1.125em,1.25em,1.5em,1.75em,2em';
         $options['theme_advanced_text_colors'] = 'ffffff,ba192c,20b7dd';
 
