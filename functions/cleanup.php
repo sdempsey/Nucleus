@@ -50,6 +50,18 @@
     //add_filter( 'get_search_form', create_function( '$a', "return null;" ) );
 
 
+/*   Remove pages from search results
+    --------------------------------------------------------------------------  */
+
+    function search_filter($query) {
+        if ($query->is_search) {
+            $query->set('post_type', 'post');
+        }
+        return $query;
+    }
+    add_filter('pre_get_posts','search_filter');
+
+
 /*  Stop wrapping images in <p>
    -------------------------------------------------------------------------- */
 
