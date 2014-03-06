@@ -11,8 +11,10 @@
                 <h2>About <?php echo get_the_author() ; ?></h2>
                 <?php the_author_meta( 'description' ); ?>
             <?php endif; ?>
-
         </article>
+
+        <?php comments_template(); ?>
+
     <?php endwhile; ?>
 
 <?php get_footer(); ?>
