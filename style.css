@@ -74,6 +74,11 @@ a:focus {
 .group:after { clear: both; }
 .group { *zoom: 1; }
 
+.screen-reader-text {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+}
 
 /*  ==========================================================================
      2. LAYOUT
