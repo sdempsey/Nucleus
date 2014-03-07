@@ -23,7 +23,7 @@
 	<?php endif; ?>
 
 	<ol class="comments-list">
-		<?php wp_list_comments( 'type=comment' ); ?>
+		<?php wp_list_comments( array( 'type' => 'comment', 'callback' => 'vital_comment' ) ); ?>
 	</ol>
 
 	<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>

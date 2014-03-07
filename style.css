@@ -372,6 +372,10 @@ a:focus {
     width: 100%;
     height: auto;
 }
+.comments ol,
+.comments ul {
+    list-style: none;
+}
 
 
 /*  ==========================================================================
