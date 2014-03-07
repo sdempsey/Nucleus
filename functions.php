@@ -14,6 +14,10 @@
         wp_enqueue_style( 'fonts', get_template_directory_uri() . '/css/fonts.css', '1.0', 'screen' );
         wp_enqueue_style( 'screen', get_stylesheet_uri(), '', '1.0', 'screen' );
 
+        if ( is_singular() ) {
+            wp_enqueue_script( 'comment-reply' );
+        }
+
         wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', null, '2.7.1', true );
         wp_enqueue_script( 'site', get_template_directory_uri() . '/scripts/site/main.js', array('jquery'), '1.0', true );
     }

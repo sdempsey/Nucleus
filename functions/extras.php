@@ -1,14 +1,17 @@
 <?php
 
 /*  ==========================================================================
-     COMMENT TEMPLATE
+     COMMENTS
     ==========================================================================  */
+
+/*   Custom Comment Template
+    --------------------------------------------------------------------------  */
 
     function vital_comment( $comment, $args, $depth ) {
         $GLOBALS['comment'] = $comment; ?>
         <?php if ( $comment->comment_approved == '1' ): ?>
         <li>
-            <div id="comment-<?php comment_ID() ?>" class="comment group">
+            <div id="comment-<?php comment_ID() ?>" class="comment">
                 <div class="comment-meta">
                     <?php echo get_avatar( $comment, 96, '', get_comment_author() ); ?>
                     <h4 class="comment-author"><?php comment_author_link() ?></h4>
@@ -16,10 +19,39 @@
                 </div>
                 <div class="comment-text">
                     <?php comment_text() ?>
+                    <?php comment_reply_link( array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']) ) ); ?>
                 </div>
             </div>
         <?php endif;
     }
+
+/*   Custom "Reply" link text
+    --------------------------------------------------------------------------  */
+
+    function vital_comment_reply_link($link, $args, $comment){
+        $comment = get_comment( $comment );
+        // If no comment author is blank, use 'Anonymous'
+        if ( empty($comment->comment_author) ) {
+            if (!empty($comment->user_id)){
+                $user=get_userdata($comment->user_id);
+                $author=$user->user_login;
+            } else {
+                $author = __('Anonymous');
+            }
+        } else {
+            $author = $comment->comment_author;
+        }
+        // If the user provided more than a first name, use only first name
+        if(strpos($author, ' ')){
+            $author = substr($author, 0, strpos($author, ' '));
+        }
+        // Replace Reply Link with "Reply to &lt;Author First Name>"
+        $reply_link_text = $args['reply_text'];
+        $link = str_replace($reply_link_text, 'Reply to ' . $author, $link);
+
+        return $link;
+    }
+    add_filter('comment_reply_link', 'vital_comment_reply_link', 10, 3);
 
 
 /*  ==========================================================================
