@@ -1,0 +1,10 @@
+# ==============================================================================
+#  RESTRICT WP-CONTENT ACCESS
+# ==============================================================================
+
+# This .htaccess goes in the root of /wp-content/
+# Remove this file if conflicts happen in plugins
+
+<Files *.php>
+    deny from all
+</Files>
