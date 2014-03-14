@@ -54,29 +54,6 @@
     add_filter('comment_reply_link', 'vital_comment_reply_link', 10, 3);
 
 
-/*  ==========================================================================
-     VITAL DASHBOARD WIDGETS
-    ==========================================================================  */
-
-    function vital_dashboard_widgets() {
-         global $wp_meta_boxes;
-         wp_add_dashboard_widget( 'dashboard_vital_feed', 'Latest from the Vital Blog', 'dashboard_vital_feed_output' );
-    }
-    function dashboard_vital_feed_output() {
-         echo '<div class="rss-widget">';
-         wp_widget_rss_output(array(
-              'url' => 'http://vtldesign.com/feed',
-              'title' => 'Latest from the Vital Blog',
-              'items' => 5,
-              'show_summary' => 1,
-              'show_author' => 1,
-              'show_date' => 1
-         ));
-         echo "</div>";
-    }
-    add_action('wp_dashboard_setup', 'vital_dashboard_widgets');
-
-
 /* ==========================================================================
     SMART EXCERPT
     http://www.distractedbysquirrels.com/blog/wordpress-improved-dynamic-excerpt
