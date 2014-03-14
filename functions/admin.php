@@ -14,7 +14,7 @@
     add_filter('post_mime_types', 'modify_post_mime_types');
 
 
-/*  Customize Editor access
+/*  Add capabilities to Editors
    -------------------------------------------------------------------------- */
 
     function add_editor_cap(){
@@ -39,31 +39,37 @@
     add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
 
 
+/*   Remove theme support
+    --------------------------------------------------------------------------  */
+
+    function vtl_remove_theme_support() {
+
+        // This removes support for post thumbnails
+        remove_theme_support( 'post-thumbnails' );
+
+        // This re-enables support for just Posts
+        add_theme_support( 'post-thumbnails', array( 'post' ) );
+    }
+    add_action( 'after_setup_theme', 'vtl_remove_theme_support', 11 );
+
+
 /*  Remove admin menus from sidebar for non-admins
+
+    NOTE: This doesn't block accessing pages directly via URL. Edit capabilities
+    to block access completely.
    -------------------------------------------------------------------------- */
 
-    function remove_admin_menu_items() {
-      $remove_menu_items = array(
-      //    __('Comments'),
-      //    __('Media'),
-      //    __('Pages'),
-      //    __('Plugins'),
-      //    __('Posts'),
-      //    __('Settings'),
-      //    __('Tools'),
-      //    __('Users')
-      );
-      global $menu;
-      end ($menu);
-      while (prev($menu)){
-          $item = explode(' ',$menu[key($menu)][0]);
-          if(in_array($item[0] != NULL?$item[0]:"" , $remove_menu_items)){
-              unset($menu[key($menu)]);
-          }
-      }
-    }
-    if (!current_user_can('administrator')) {
-      add_action('admin_menu', 'remove_admin_menu_items'); }
+   function vtl_remove_menus() {
+
+       // Menu Pages
+       // remove_menu_page( 'edit-comments.php' );
+
+       // Submenu Pages
+       remove_submenu_page( 'themes.php', 'customize.php' );
+
+   }
+   if (!current_user_can('administrator'))
+       add_action( 'admin_menu', 'vtl_remove_menus', 999 );
 
 
 /*  Add/remove admin bar items for non-admins
