@@ -345,11 +345,3 @@ RewriteRule ^wp-includes/theme-compat/ - [F,L]
 # <IfModule mod_headers.c>
 #    Header set Connection Keep-Alive
 # </IfModule>
-
-
-# Adds multilingual cross-domain font support for Firefox
-#<FilesMatch "\.(ttf|otf|eot|woff)$">
-#<IfModule mod_headers.c>
-#Header set Access-Control-Allow-Origin "*"
-#</IfModule>
-#</FilesMatch>
