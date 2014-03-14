@@ -149,6 +149,17 @@
     SITE-SPECIFIC
    ========================================================================== */
 
+/*   Add theme support
+   --------------------------------------------------------------------------  */
+
+   function vtl_add_theme_support() {
+
+       // Add featured image support for only specific post types
+       add_theme_support( 'post-thumbnails', array( 'post' ) );
+   }
+   add_action( 'after_setup_theme', 'vtl_add_theme_support', 11 );
+
+
 /*  Customize login
   -------------------------------------------------------------------------- */
 

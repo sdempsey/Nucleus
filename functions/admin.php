@@ -39,20 +39,6 @@
     add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
 
 
-/*   Remove theme support
-    --------------------------------------------------------------------------  */
-
-    function vtl_remove_theme_support() {
-
-        // This removes support for post thumbnails
-        remove_theme_support( 'post-thumbnails' );
-
-        // This re-enables support for just Posts
-        add_theme_support( 'post-thumbnails', array( 'post' ) );
-    }
-    add_action( 'after_setup_theme', 'vtl_remove_theme_support', 11 );
-
-
 /*  Remove admin menus from sidebar for non-admins
 
     NOTE: This doesn't block accessing pages directly via URL. Edit capabilities
