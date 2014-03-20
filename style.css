@@ -376,6 +376,14 @@ a:focus {
 .comments ul {
     list-style: none;
 }
+.responsive-table {
+    overflow-y: scroll;
+}
+@media screen and (min-width: 768px){
+    .responsive-table {
+        overflow: visible;
+    }
+}
 
 
 /*  ==========================================================================
