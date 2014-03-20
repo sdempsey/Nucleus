@@ -16,15 +16,14 @@
     3. Header
     4. Footer
     5. Navigation
-        5.1.Main Navigation
-        5.2.Utility Navigation
-        5.3.Footer Navigation
+        5.1. Main Navigation
+        5.2. Utility Navigation
+        5.3. Footer Navigation
     6. Page Defaults
         6.1. Typography / Layout
     7. Global Blocks
     8. UI Elements
 
-    -------------------------------------------------------------------------- */
 
 /*  ==========================================================================
      1. GLOBAL DEFAULTS
@@ -54,8 +53,7 @@ a {
     text-decoration: none;
 }
 a:hover,
-a:active,
-a:focus {
+a:active {
     color: #000;
     outline: 0;
 }
@@ -68,6 +66,9 @@ a:focus {
     position: absolute !important;
     clip: rect(1px 1px 1px 1px);
     clip: rect(1px, 1px, 1px, 1px);
+}
+[hidden] {
+  display: none;
 }
 
 /*  ==========================================================================
@@ -174,16 +175,8 @@ a:focus {
 .entry p:first-child {
     margin-top: 0;
 }
-.entry abbr[title] {
-    border-bottom: 1px dotted;
-}
-.entry strong {
-    font-weight: bold;
-}
 .entry blockquote {
     margin: 1rem 2.5rem;
-}
-.entry blockquote p {
     font-style: italic;
 }
 .entry blockquote p:before {
@@ -228,22 +221,25 @@ a:focus {
 .entry sub {
     bottom: -0.25rem;
 }
-.entry dl,
-.entry ol,
-.entry ul {
+.entry ul,
+.entry ol {
     margin: 1rem 0;
 }
-.entry dd {
-    margin: 0 0 0 2.5rem;
-}
-.entry ol,
-.entry ul {
+.entry ul,
+.entry ol {
     padding: 0 0 0 2.5rem;
 }
-.entry nav ul,
-.entry nav ol {
-    list-style: none;
-    list-style-image: none;
+.entry ul {
+    list-style-type: disc;
+}
+.entry ul ul {
+    list-style-type: circle;
+}
+.entry ul ul ul {
+    list-style-type: square;
+}
+.entry ol {
+    list-style-type: decimal;
 }
 .entry table {
     margin: 0;
