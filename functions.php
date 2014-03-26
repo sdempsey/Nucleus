@@ -12,7 +12,6 @@
 
         wp_enqueue_style( 'reset', get_template_directory_uri() . '/css/reset.css', '1.0', 'screen' );
         wp_enqueue_style( 'fonts', get_template_directory_uri() . '/css/fonts.css', '1.0', 'screen' );
-        //wp_enqueue_style( 'foundation-grid', get_template_directory_uri() . '/css/foundation-grid.css', '4.0', 'screen' );
         wp_enqueue_style( 'screen', get_stylesheet_uri(), '', '1.0', 'screen' );
 
         if ( is_singular() ) {
@@ -36,7 +35,7 @@
             echo '<![endif]-->'."\n";
         }
     }
-    add_action('wp_head', 'add_ie_scripts', 1);
+    add_action('wp_footer', 'add_ie_scripts', 1);
 
 
 /* ==========================================================================
@@ -89,57 +88,10 @@
     WIDGETS
    ========================================================================== */
 
-    //if (function_exists('register_sidebar')) {
-    //  register_sidebar(array(
-    //      'name' => 'Footer Column 1',
-    //      'id'   => 'footer_column1',
-    //        'class'         => '',
-    //      'description'   => 'These are widgets for Footer Column 1.',
-    //      'before_widget' => '<div id="%1$s" class="widget %2$s">',
-    //      'after_widget'  => '</div>',
-    //      'before_title'  => '<h2>',
-    //      'after_title'   => '</h2>'
-    //  ));
-    //}
-
 
 /* ==========================================================================
     SHORTCODES
    ========================================================================== */
-
-/*  Email Encode
-    http://codex.wordpress.org/Function_Reference/antispambot
-   -------------------------------------------------------------------------- */
-
-    function email_encode_function($atts , $content = null){
-        if (!is_email ($content))
-            return;
-        return '<a href="mailto:'.antispambot($content).'">'.antispambot($content).'</a>';
-    }
-    add_shortcode( 'email','email_encode_function');
-
-
-    // Simple shortcode
-    // function custom_shortcode_x( $atts, $content = null ) {
-    //  return '<span class="custom_shortcode_x">' . $content . '</span>';
-    // }
-    // add_shortcode( 'shortcode-x-slug', 'custom_shortcode_x' );
-
-    // Simple shortcode (allows nesting)
-    // function custom_shortcode_y( $atts, $content = null ) {
-    //  return '<span class="custom_shortcode_y">' . do_shortcode($content) . '</span>';
-    // }
-    // add_shortcode( 'shortcode-x-slug', 'custom_shortcode_y' );
-
-    // [bartag foo="foo-value"]
-    // function bartag_func( $atts ) {
-    //  extract( shortcode_atts( array(
-    //      'foo' => 'something',
-    //      'bar' => 'something else',
-    //  ), $atts ) );
-    //  return "{$foo} = {$bar}";
-    // }
-    // add_shortcode( 'bartag', 'bartag_func' );
 
 
 /* ==========================================================================
@@ -160,18 +112,18 @@
 /*  Customize login
   -------------------------------------------------------------------------- */
 
-   function custom_login_logo() {
-       echo "<style>
-       body.login #login h1 a {
-           background: url('".get_bloginfo('template_url')."/images/custom-logo.png') no-repeat scroll center top transparent;
-           width: 274px;
-           height: 63px;
-       }
-       </style>";
-   }
-   add_filter('login_headerurl', create_function(false,"return '".home_url()."';")); // Logo link
-   add_filter('login_headertitle', create_function(false,"return 'Powered by WordPress';")); // Logo tooltip text
-   add_action("login_head", "custom_login_logo");
+   // function custom_login_logo() {
+   //     echo "<style>
+   //     body.login #login h1 a {
+   //          background: url('".get_bloginfo('template_url')."/images/custom-logo.png') no-repeat scroll center top transparent;
+   //          width: 274px;
+   //          height: 63px;
+   //     }
+   //     </style>";
+   // }
+   // add_filter('login_headerurl', create_function(false,"return '".home_url()."';")); // Logo link
+   // add_filter('login_headertitle', create_function(false,"return 'Powered by WordPress';")); // Logo tooltip text
+   // add_action("login_head", "custom_login_logo");
 
 
 /* ==========================================================================
@@ -182,26 +134,26 @@
     http://codex.wordpress.org/TinyMCE_Custom_Styles#Style_Format_Arguments
    -------------------------------------------------------------------------- */
 
-    function my_mce_styles( $init_array ) {
-        $style_formats = array(
-            array(
-                'title' => 'Style 1',
-                'block' => 'div',
-                'classes' => 'style-class-1',
-                'wrapper' => true,
+    // function my_mce_styles( $init_array ) {
+    //     $style_formats = array(
+    //         array(
+    //             'title' => 'Style 1',
+    //             'block' => 'div',
+    //             'classes' => 'style-class-1',
+    //             'wrapper' => true,
 
-            ),
-            array(
-                'title' => 'Red Button',
-                'selector' => 'a',
-                'classes' => 'red-button',
-                'wrapper' => false,
-            )
-        );
-        $init_array['style_formats'] = json_encode( $style_formats );
-        return $init_array;
-    }
-    add_filter( 'tiny_mce_before_init', 'my_mce_styles' );
+    //         ),
+    //         array(
+    //             'title' => 'Red Button',
+    //             'selector' => 'a',
+    //             'classes' => 'red-button',
+    //             'wrapper' => false,
+    //         )
+    //     );
+    //     $init_array['style_formats'] = json_encode( $style_formats );
+    //     return $init_array;
+    // }
+    // add_filter( 'tiny_mce_before_init', 'my_mce_styles' );
 
 /*  Options & Buttons
    -------------------------------------------------------------------------- */
