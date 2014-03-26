@@ -62,19 +62,19 @@
    -------------------------------------------------------------------------- */
 
     function custom_admin_bar_render() {
-      global $wp_admin_bar;
-      // Remove
-      $wp_admin_bar->remove_menu('wp-logo');
-      $wp_admin_bar->remove_menu('comments');
-      //$wp_admin_bar->remove_menu('new-post', 'new-content');
-      $wp_admin_bar->remove_menu('my-account');
-      // Add
-      $wp_admin_bar->add_menu( array(
-          'parent' => 'top-secondary',
-          'id' => 'log_out',
-          'title' => __('Log Out'),
-          'href' => wp_logout_url()
-      ));
+        global $wp_admin_bar;
+        // Remove
+        $wp_admin_bar->remove_menu('wp-logo');
+        $wp_admin_bar->remove_menu('comments');
+        //$wp_admin_bar->remove_menu('new-post', 'new-content');
+        $wp_admin_bar->remove_menu('my-account');
+        // Add
+        $wp_admin_bar->add_menu( array(
+            'parent' => 'top-secondary',
+            'id' => 'log_out',
+            'title' => __('Log Out'),
+            'href' => wp_logout_url()
+        ));
     }
     add_action( 'wp_before_admin_bar_render', 'custom_admin_bar_render' );
 
@@ -83,20 +83,20 @@
    -------------------------------------------------------------------------- */
 
     function remove_meta_boxes() {
-      remove_meta_box('commentstatusdiv','page','normal'); // Comments status (discussion)
-      remove_meta_box('commentsdiv','page','normal'); // Comments
-      remove_meta_box('slugdiv','page','normal'); // Slug
-      remove_meta_box('authordiv','page','normal'); // Author
-      remove_meta_box('postcustom','page','normal'); // Custom fields (WordPress)
-      remove_meta_box('postexcerpt','page','normal'); // Excerpt
-      remove_meta_box('trackbacksdiv','page','normal'); // Trackbacks
-      remove_meta_box('formatdiv','page','normal'); // Formats
-      // remove_meta_box('tagsdiv-post_tag','page','normal'); // Tags
-      // remove_meta_box('categorydiv','page','normal'); // Categories
-      remove_meta_box('pageparentdiv','page','normal'); // Attributes
+        remove_meta_box('commentstatusdiv','page','normal'); // Comments status (discussion)
+        remove_meta_box('commentsdiv','page','normal'); // Comments
+        remove_meta_box('slugdiv','page','normal'); // Slug
+        remove_meta_box('authordiv','page','normal'); // Author
+        remove_meta_box('postcustom','page','normal'); // Custom fields (WordPress)
+        remove_meta_box('postexcerpt','page','normal'); // Excerpt
+        remove_meta_box('trackbacksdiv','page','normal'); // Trackbacks
+        remove_meta_box('formatdiv','page','normal'); // Formats
+        // remove_meta_box('tagsdiv-post_tag','page','normal'); // Tags
+        // remove_meta_box('categorydiv','page','normal'); // Categories
+        remove_meta_box('pageparentdiv','page','normal'); // Attributes
     }
     if(!current_user_can('administrator')) {
-      add_action('admin_init','remove_meta_boxes'); }
+        add_action('admin_init','remove_meta_boxes'); }
 
 
 /*  Hide WP update messages for non-admins
