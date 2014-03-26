@@ -23,31 +23,15 @@
 
 
 /*  Clean up output of stylesheet <link> tags
+    (Removes IDs and non-meaningful media attributes)
    -------------------------------------------------------------------------- */
+
     function clean_style_tag($input) {
         preg_match_all("!<link rel='stylesheet'\s?(id='[^']+')?\s+href='(.*)' type='text/css' media='(.*)' />!", $input, $matches);
-        // Only display media if it is meaningful
         $media = $matches[3][0] !== '' && $matches[3][0] !== 'all' ? ' media="' . $matches[3][0] . '"' : '';
         return '<link rel="stylesheet" href="' . $matches[2][0] . '"' . $media . '>' . "\n";
     }
     add_filter('style_loader_tag', 'clean_style_tag');
-
-
-/*  Remove search functionality if not needed
-   -------------------------------------------------------------------------- */
-
-    //function fb_filter_query( $query, $error = true ) {
-    //  if ( is_search() ) {
-    //      $query->is_search = false;
-    //      $query->query_vars[s] = false;
-    //      $query->query[s] = false;
-    //      // to error
-    //      if ( $error == true )
-    //      $query->is_404 = true;
-    //  }
-    //}
-    //add_action( 'parse_query', 'fb_filter_query' );
-    //add_filter( 'get_search_form', create_function( '$a', "return null;" ) );
 
 
 /*   Remove pages from search results
@@ -86,39 +70,6 @@
     add_filter('the_content', 'clean_shortcodes');
 
 
-/*  Wrap embedded media in container
-    http://www.readability.com/publishers/guidelines#publisher
-   -------------------------------------------------------------------------- */
-
-    function embed_wrap($cache, $url, $attr = '', $post_ID = '') {
-        return '<div class="entry-content-asset">' . $cache . '</div>';
-    }
-    add_filter('embed_oembed_html', 'embed_wrap', 10, 4);
-
-
-/*  Remove unnecessary self-closing tags
-   -------------------------------------------------------------------------- */
-
-    function remove_self_closing_tags($input) {
-        return str_replace(' />', '>', $input);
-    }
-    add_filter('get_avatar',          'remove_self_closing_tags'); // <img />
-    add_filter('comment_id_fields',   'remove_self_closing_tags'); // <input />
-    add_filter('post_thumbnail_html', 'remove_self_closing_tags'); // <img />
-
-
-/*  Add body class if sidebar is active
-   -------------------------------------------------------------------------- */
-
-    function add_body_sidebar_class($classes) {
-        if (is_active_sidebar('sidebar')) {
-            $classes[] = 'has-sidebar';
-        }
-        return $classes;
-    }
-    add_filter('body_class','add_body_sidebar_class');
-
-
 /*  Remove #more jump link on posts
    -------------------------------------------------------------------------- */
 
@@ -129,76 +80,11 @@
     add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
 
 
-/*  Remove width and height from wp-caption
-   -------------------------------------------------------------------------- */
-
-    function fixed_img_caption_shortcode($attr, $content = null) {
-        if ( ! isset( $attr['caption'] ) ) {
-            if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
-                $content = $matches[1];
-                $attr['caption'] = trim( $matches[2] );
-            }
-        }
-        $output = apply_filters('img_caption_shortcode', '', $attr, $content);
-        if ( $output != '' ) return $output;
-        extract(shortcode_atts(array('id' => '','align' => 'alignnone','width' => '','caption' => ''), $attr));
-        if ( 1 > (int) $width || empty($caption) ) return $content;
-        if ( $id ) $id = 'id="' . esc_attr($id) . '" ';
-        return '<div ' . $id . 'class="wp-caption ' . esc_attr($align) . '" >' . do_shortcode( $content ) . '<p class="wp-caption-text">' . $caption . '</p></div>';
-    }
-    add_shortcode('wp_caption', 'fixed_img_caption_shortcode');
-    add_shortcode('caption', 'fixed_img_caption_shortcode');
-
-
-/*  Add featured images to RSS feed
-   -------------------------------------------------------------------------- */
-
-    function rss_post_thumbnail($content) {
-        global $post;
-        if(has_post_thumbnail($post->ID)) {
-            $content = '<p>' . get_the_post_thumbnail($post->ID) .
-            '</p>' . get_the_content();
-        }
-        return $content;
-    }
-    add_filter('the_excerpt_rss', 'rss_post_thumbnail');
-    add_filter('the_content_feed', 'rss_post_thumbnail');
-
-
-/*  Add a class to the last post in a loop
-   -------------------------------------------------------------------------- */
-
-    function last_post_class($classes){
-        global $wp_query;
-        if(($wp_query->current_post+1) == $wp_query->post_count) $classes[] = 'last';
-        return $classes;
-    }
-    add_filter('post_class', 'last_post_class');
-
-
-/* ==========================================================================
-    CLEANUP BACK-END
-   ========================================================================== */
-
-/*  Remove unnecessary dashboard widgets
-   -------------------------------------------------------------------------- */
-
-    function remove_dashboard_widgets() {
-        remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');
-        remove_meta_box('dashboard_plugins', 'dashboard', 'normal');
-        remove_meta_box('dashboard_primary', 'dashboard', 'normal');
-        remove_meta_box('dashboard_secondary', 'dashboard', 'normal');
-    }
-    add_action('admin_init', 'remove_dashboard_widgets');
-
-
-/* ==========================================================================
-    NICE SEARCH by Mark Jaquith
+/*  NICE SEARCH by Mark Jaquith
     http://txfx.net/wordpress-plugins/nice-search
 
-    Redirects search results from /?s=query to /search/query/
-    and converts %20 to +
-   ========================================================================== */
+    Redirects search results from /?s=query to /search/query/ and converts %20 to +
+   -------------------------------------------------------------------------- */
 
     function cws_nice_search_redirect() {
         global $wp_rewrite;

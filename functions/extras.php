@@ -54,13 +54,13 @@
     add_filter('comment_reply_link', 'vital_comment_reply_link', 10, 3);
 
 
-/* ==========================================================================
-    SMART EXCERPT
-    http://www.distractedbysquirrels.com/blog/wordpress-improved-dynamic-excerpt
+/*   SMART EXCERPT
+     http://www.distractedbysquirrels.com/blog/wordpress-improved-dynamic-excerpt
 
-    Returns an excerpt which is not longer than the given length and always
-    ends with a complete sentence.
-   ========================================================================== */
+     Returns an excerpt which is not longer than the given length and always
+     ends with a complete sentence. If first sentence is longer than length,
+     it will add the standard ellipsis…
+    --------------------------------------------------------------------------  */
 
     function vtl_smart_excerpt($length) { // Max excerpt length. Length is set in characters
         global $post;
@@ -88,12 +88,11 @@
     }
 
 
-/* ==========================================================================
-    HUMAN-FRIENDLY POST DATES
+/*   HUMAN-FRIENDLY POST DATES
 
-    Prints human friendly dates (ie. "2 days ago") if the post is less than
-    one week old. Otherwise, it displays a standard datestamp.
-   ========================================================================== */
+     Prints human friendly dates (ie. "2 days ago") if the post is less than
+     one week old. Otherwise, it displays a standard datestamp.
+    --------------------------------------------------------------------------  */
 
     function human_friendly_date() {
         global $post;
@@ -110,52 +109,9 @@
     }
 
 
-/* ==========================================================================
-    IS_TREE
-
-    Test if page is parent or ancester of specific page ID.
-    USAGE: if ( is_tree('value') ) { ... }
-   ========================================================================== */
-
-    function is_tree( $pid ) {
-        global $post;
-        if ( is_page($pid) )
-            return true;
-        $anc = get_post_ancestors( $post->ID );
-        foreach ( $anc as $ancestor ) {
-            if( is_page() && $ancestor == $pid ) {
-                return true; }
-        }
-        return false;
-    }
-
-
-/* ==========================================================================
-    HAS_CUSTOM_TAX
-
-    Test for custom taxonomy.
-    EXAMPLE: has_custom_tax('taxonomy_name','slug');
-    EXAMPLE: has_custom_tax('taxonomy_name', array('slug1', 'slug2', 'slug3'));
-   ========================================================================== */
-
-    function has_custom_tax($tax, $term, $_post = NULL) {
-        if ( !$tax || !$term ) { return FALSE; }
-        if ( $_post ) {
-            $_post = get_post( $_post );
-        } else {
-            $_post =& $GLOBALS['post'];
-        }
-        if ( !$_post ) { return FALSE; }
-        $return = is_object_in_term( $_post->ID, $tax, $term );
-        if ( is_wp_error( $return ) ) { return FALSE; }
-        return $return;
-    }
-
-
-/* ==========================================================================
-    ADD CUSTOM CLASSES FIELD TO WIDGETS
-    http://kucrut.org/add-custom-classes-to-any-widget
-   ========================================================================== */
+/*   ADD CUSTOM CLASSES FIELD TO WIDGETS
+     http://kucrut.org/add-custom-classes-to-any-widget
+    --------------------------------------------------------------------------  */
 
     function kc_widget_form_extend( $instance, $widget ) {
         if ( !isset($instance['classes']) )
@@ -168,12 +124,15 @@
         echo $row;
         return $instance;
     }
-    add_filter('widget_form_callback', 'kc_widget_form_extend', 10, 2);
+    add_filter( 'widget_form_callback', 'kc_widget_form_extend', 10, 2 );
+
     function kc_widget_update( $instance, $new_instance ) {
         $instance['classes'] = $new_instance['classes'];
         return $instance;
     }
-    add_filter( 'widget_update_callback', 'kc_widget_update', 10, 2 );function kc_dynamic_sidebar_params( $params ) {
+    add_filter( 'widget_update_callback', 'kc_widget_update', 10, 2 );
+
+    function kc_dynamic_sidebar_params( $params ) {
         global $wp_registered_widgets;
         $widget_id  = $params[0]['widget_id'];
         $widget_obj = $wp_registered_widgets[$widget_id];
@@ -186,38 +145,4 @@
         return $params;
     }
     add_filter( 'dynamic_sidebar_params', 'kc_dynamic_sidebar_params' );
-
-
-/* ==========================================================================
-    BREADCRUMBS
-   ========================================================================== */
-
-    function vtl_page_breadcrumbs() {
-        $delimiter = ':';
-        $currentBefore = '<span class="current">';
-        $currentAfter = '</span>';
-        if ( !is_home() && !is_front_page() || is_paged() ) {
-        echo '<div class="breadcrumbs">';
-        global $post;
-        if ( is_page() && !$post->post_parent ) {
-            echo $currentBefore;
-            the_title();
-            echo $currentAfter; }
-        elseif ( is_page() && $post->post_parent ) {
-            $parent_id  = $post->post_parent;
-            $breadcrumbs = array();
-            while ($parent_id) {
-            $page = get_page($parent_id);
-            $breadcrumbs[] = '<a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>';
-            $parent_id  = $page->post_parent;
-            }
-            $breadcrumbs = array_reverse($breadcrumbs);
-            foreach ($breadcrumbs as $crumb) echo $crumb . ' ' . $delimiter . ' ';
-            echo $currentBefore;
-            the_title();
-            echo $currentAfter;
-        }
-        echo '</div>';
-        }
-    }
 ?>
