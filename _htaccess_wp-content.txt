@@ -8,3 +8,9 @@
 <Files *.php>
     deny from all
 </Files>
+
+# If using Sharrre buttons
+
+# <Files sharrre.php>
+#     allow from all
+# </Files>
