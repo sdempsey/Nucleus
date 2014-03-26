@@ -5,7 +5,7 @@
     require_once locate_template('/functions/pagination.php');
 
 /* ==========================================================================
-    SCRIPTS AND STYLESHEETS
+    SCRIPTS, STYLESHEETS, AND FAVICONS
    ========================================================================== */
 
     function script_enqueuer() {
@@ -36,6 +36,16 @@
         }
     }
     add_action('wp_footer', 'add_ie_scripts', 1);
+
+
+/*   Favicons
+    --------------------------------------------------------------------------  */
+
+    function add_favicons() {
+        echo '<link rel="shortcut icon" href="' . get_stylesheet_directory_uri() . '/images/favicon.ico">'."\n";
+        echo '<link rel="apple-touch-icon-precomposed" href="' . get_stylesheet_directory_uri() . '/images/apple-touch-icon-precomposed.png" />'."\n";
+    }
+    add_action('wp_head', 'add_favicons');
 
 
 /* ==========================================================================
@@ -101,29 +111,29 @@
 /*   Add theme support
    --------------------------------------------------------------------------  */
 
-   function vtl_add_theme_support() {
+    function vtl_add_theme_support() {
 
-        // Add featured image support for only specific post types
-        add_theme_support( 'post-thumbnails', array( 'post' ) );
-   }
-   add_action( 'after_setup_theme', 'vtl_add_theme_support', 11 );
+         // Add featured image support for only specific post types
+         add_theme_support( 'post-thumbnails', array( 'post' ) );
+    }
+    add_action( 'after_setup_theme', 'vtl_add_theme_support', 11 );
 
 
 /*  Customize login
   -------------------------------------------------------------------------- */
 
-   // function custom_login_logo() {
-   //     echo "<style>
-   //     body.login #login h1 a {
-   //          background: url('".get_bloginfo('template_url')."/images/custom-logo.png') no-repeat scroll center top transparent;
-   //          width: 274px;
-   //          height: 63px;
-   //     }
-   //     </style>";
-   // }
-   // add_filter('login_headerurl', create_function(false,"return '".home_url()."';")); // Logo link
-   // add_filter('login_headertitle', create_function(false,"return 'Powered by WordPress';")); // Logo tooltip text
-   // add_action("login_head", "custom_login_logo");
+    // function custom_login_logo() {
+    //     echo "<style>
+    //     body.login #login h1 a {
+    //          background: url('".get_bloginfo('template_url')."/images/custom-logo.png') no-repeat scroll center top transparent;
+    //          width: 274px;
+    //          height: 63px;
+    //     }
+    //     </style>";
+    // }
+    // add_filter('login_headerurl', create_function(false,"return '".home_url()."';")); // Logo link
+    // add_filter('login_headertitle', create_function(false,"return 'Powered by WordPress';")); // Logo tooltip text
+    // add_action("login_head", "custom_login_logo");
 
 
 /* ==========================================================================
