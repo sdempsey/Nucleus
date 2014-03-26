@@ -108,50 +108,50 @@ a:active {
     --------------------------------------------------------------------------  */
 
 .entry h1 {
-    font-size: 2rem;
-    margin-top: 1.67rem;
-    margin-bottom: .5rem;
+    font-size: 2em;
+    margin-top: 1.67em;
+    margin-bottom: .5em;
 }
 .entry h2 {
-    font-size: 1.5rem;
-    margin-top: 1.2rem;
-    margin-bottom: .4rem;
+    font-size: 1.5em;
+    margin-top: 1.2em;
+    margin-bottom: .4em;
 }
 .entry h1 + h2 {
-    margin-top: -.5rem;
+    margin-top: -.5em;
 }
 .entry h3 {
-    font-size: 1.25rem;
+    font-size: 1.25em;
     margin-top: 1.8em;
-    margin-bottom: .4rem;
+    margin-bottom: .4em;
 }
 .entry h2 + h3 {
-    margin-top: -.4rem;
-    margin-bottom: .2rem;
+    margin-top: -.4em;
+    margin-bottom: .2em;
 }
 .entry h4 {
-    font-size: 1rem;
-    margin-top: 1.8rem;
-    margin-bottom: .4rem;
+    font-size: 1em;
+    margin-top: 1.8em;
+    margin-bottom: .4em;
 }
 .entry h3 + h4 {
-    margin-top: -.3rem;
+    margin-top: -.3em;
 }
 .entry h5 {
-    font-size: 1rem;
-    margin-top: 1.8rem;
-    margin-bottom: .4rem;
+    font-size: 1em;
+    margin-top: 1.8em;
+    margin-bottom: .4em;
 }
 .entry h4 + h5 {
-    margin-top: -.3rem;
+    margin-top: -.3em;
 }
 .entry h6 {
-    font-size: 1rem;
-    margin-top: 1.8rem;
-    margin-bottom: .4rem;
+    font-size: 1em;
+    margin-top: 1.8em;
+    margin-bottom: .4em;
 }
 .entry h5 + h6 {
-    margin-top: -.2rem;
+    margin-top: -.2em;
 }
 .entry h1:first-child
 .entry h2:first-child
@@ -163,7 +163,7 @@ a:active {
 }
 .entry p,
 .entry pre {
-    margin: 1rem 0 0;
+    margin: 1em 0 0;
 }
 .entry p {
     word-wrap: break-word;
@@ -176,13 +176,13 @@ a:active {
     margin-top: 0;
 }
 .entry blockquote {
-    margin: 1rem 2.5rem;
+    margin: 1em 2.5em;
     font-style: italic;
 }
 .entry blockquote p:before {
      content: "\201C";
      display: inline-block;
-     padding-right: .1rem;
+     padding-right: .1em;
 }
 .entry blockquote p:after {
      content: "\201D";
@@ -201,7 +201,7 @@ a:active {
 .entry code,
 .entry pre, {
     font-family: monospace;
-    font-size: 1rem;
+    font-size: 1em;
 }
 .entry pre {
     white-space: pre;
@@ -216,18 +216,18 @@ a:active {
     vertical-align: baseline;
 }
 .entry sup {
-    top: -0.5rem;
+    top: -0.5em;
 }
 .entry sub {
-    bottom: -0.25rem;
+    bottom: -0.25em;
 }
 .entry ul,
 .entry ol {
-    margin: 1rem 0;
+    margin: 1em 0;
 }
 .entry ul,
 .entry ol {
-    padding: 0 0 0 2.5rem;
+    padding: 0 0 0 2.5em;
 }
 .entry ul {
     list-style-type: disc;
@@ -247,7 +247,7 @@ a:active {
 }
 .entry table th,
 .entry table td {
-    padding: .625rem 1.25rem;
+    padding: .625em 1.25em;
     text-align: left;
     border-bottom: 1px solid #ccc;
 }
@@ -267,24 +267,24 @@ a:active {
     display: block;
 }
 .entry .alignnone {
-    margin: 1rem 1rem 1rem 0;
+    margin: 1em 1em 1em 0;
 }
 .entry .aligncenter,
 .entry div.aligncenter {
     display:block;
-    margin: .5rem auto;
+    margin: .5em auto;
 }
 .entry .alignright {
     float:right;
-    margin: 0 0 1rem 1rem;
+    margin: 0 0 1em 1em;
 }
 .entry .alignleft {
     float:left;
-    margin: 0 1rem 1rem 0;
+    margin: 0 1em 1em 0;
 }
 .entry .aligncenter {
     display: block;
-    margin: 1rem auto;
+    margin: 1em auto;
 }
 .entry img,
 .entry img[class*="align"],
@@ -294,17 +294,17 @@ a:active {
     border: none;
 }
 .entry img.alignright {
-    margin: 1rem 0 1rem 1rem;
+    margin: 1em 0 1em 1em;
 }
 .entry img.alignleft {
-    margin: 1rem 1rem 1rem 0;
+    margin: 1em 1em 1em 0;
 }
 .entry img.aligncenter{
     display: block;
-    margin: 1rem auto;
+    margin: 1em auto;
 }
 .entry .wp-caption {
-    margin-bottom: 1rem;
+    margin-bottom: 1em;
     margin-left: 0;
     max-width: 96%;
     text-align: center;
@@ -315,7 +315,7 @@ a:active {
 }
 .entry .wp-caption-text {
     position: relative;
-    font-size: .8rem;
+    font-size: .8em;
 }
 .entry iframe {
     max-width: 100%;
@@ -323,7 +323,7 @@ a:active {
 .responsive-table {
     overflow-y: scroll;
 }
-@media screen and (min-width: 48rem){
+@media screen and (min-width: 768px){
     .responsive-table {
         overflow: visible;
     }
