@@ -175,7 +175,7 @@
 
 
 /* ==========================================================================
-    TINYMCE
+    CUSTOM TOOLBARS
    ========================================================================== */
 
 /*  Custom Styles
@@ -206,7 +206,7 @@
 /*  Options & Buttons
    -------------------------------------------------------------------------- */
 
-    function custom_tinymce($options) {
+    function custom_toolbars($options) {
         $options['wordpress_adv_hidden'] = false;
         $options['remove_linebreaks'] = false;
         $options['gecko_spellcheck'] = true;
@@ -225,14 +225,15 @@
 
         return $options;
     }
-    add_filter('tiny_mce_before_init', 'custom_tinymce' );
+    add_filter('tiny_mce_before_init', 'custom_toolbars' );
 
 /*  Advanced Custom Fields WYSIWYG Buttons
    -------------------------------------------------------------------------- */
 
-    function my_toolbars( $toolbars ) {
-        $toolbars['Full' ][2] = array('formatselect','styleselect','fontselect', 'fontsizeselect','forecolor','pastetext','pasteword','removeformat','charmap','undo','redo','code' );
+    function custom_acf_toolbars( $toolbars ) {
+        $toolbars['Basic' ][1] = array( 'bold,italic,underline,sup,bullist,numlist,blockquote,justifyleft,justifycenter,justifyright,link,unlink,hr,code,fullscreen' );
+        $toolbars['Full' ][2] = array('formatselect,styleselect,fontselect,fontsizeselect,forecolor,pastetext,pasteword,removeformat,charmap,undo,redo' );
         return $toolbars;
     }
-    add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+    add_filter( 'acf/fields/wysiwyg/toolbars' , 'custom_acf_toolbars'  );
 ?>
