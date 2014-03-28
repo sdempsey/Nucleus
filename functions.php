@@ -20,6 +20,13 @@
 
         wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/scripts/libraries/modernizr.js', null, '2.7.1', true );
         wp_enqueue_script( 'site', get_template_directory_uri() . '/scripts/site/main.js', array('jquery'), '1.0', true );
+
+        // Localize site URLs for use in JavaScripts
+        $site_info = array(
+            'home_url' => get_home_url(),
+            'theme_directory' => get_template_directory_uri()
+        );
+        wp_localize_script( 'site', 'SiteInfo', $site_info );
     }
     add_action( 'wp_enqueue_scripts', 'script_enqueuer' );
 
