@@ -42,6 +42,7 @@
     </FilesMatch>
 </IfModule>
 
+
 # ==============================================================================
 #  ERRORS
 # ==============================================================================
@@ -57,6 +58,7 @@
 
 Options -MultiViews
 
+
 # ==============================================================================
 #  INTERNET EXPLORER
 # ==============================================================================
@@ -71,6 +73,7 @@ Options -MultiViews
         Header unset X-UA-Compatible
     </FilesMatch>
 </IfModule>
+
 
 # ==============================================================================
 #  MIME TYPES AND ENCODING
@@ -122,6 +125,7 @@ AddDefaultCharset utf-8
     AddCharset utf-8 .atom .css .js .json .rss .vtt .webapp .xml
 </IfModule>
 
+
 # ==============================================================================
 #  URL REWRITES
 # ==============================================================================
@@ -171,80 +175,10 @@ AddDefaultCharset utf-8
 #    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
+
 # ==============================================================================
 #  SECURITY
 # ==============================================================================
-
-# ------------------------------------------------------------------------------
-#  File access / Block sensitive WordPress files
-# ------------------------------------------------------------------------------
-
-<IfModule mod_autoindex.c>
-    Options -Indexes
-</IfModule>
-
-<files .htaccess>
-Order allow,deny
-Deny from all
-</files>
-
-<files readme.html>
-Order allow,deny
-Deny from all
-</files>
-
-<files readme.txt>
-Order allow,deny
-Deny from all
-</files>
-
-<files install.php>
-Order allow,deny
-Deny from all
-</files>
-
-<files wp-config.php>
-Order allow,deny
-Deny from all
-</files>
-
-<files error_log>
-    Order allow,deny
-    Deny from all
-</files>
-
-RewriteRule ^wp-admin/includes/ - [F,L]
-RewriteRule !^wp-includes/ - [S=3]
-RewriteCond %{SCRIPT_FILENAME} !^(.*)wp-includes/ms-files.php
-RewriteRule ^wp-includes/[^/]+\.php$ - [F,L]
-RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
-RewriteRule ^wp-includes/theme-compat/ - [F,L]
-
-# Block access to hidden files and directories
-
-<IfModule mod_rewrite.c>
-    RewriteCond %{SCRIPT_FILENAME} -d [OR]
-    RewriteCond %{SCRIPT_FILENAME} -f
-    RewriteRule "(^|/)\." - [F]
-</IfModule>
-
-# Block access to files that can expose sensitive information
-
-<FilesMatch "(^#.*#|\.(bak|config|dist|fla|in[ci]|log|psd|sh|sql|sw[op])|~)$">
-
-    # Apache < 2.3
-    <IfModule !mod_authz_core.c>
-        Order allow,deny
-        Deny from all
-        Satisfy All
-    </IfModule>
-
-    # Apache ≥ 2.3
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-
-</FilesMatch>
 
 # ------------------------------------------------------------------------------
 #  Secure Sockets Layer (SSL)
@@ -276,56 +210,6 @@ RewriteRule ^wp-includes/theme-compat/ - [F,L]
 # <IfModule mod_headers.c>
 #    Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
 # </IfModule>
-
-# ------------------------------------------------------------------------------
-#  Prevent/block malicious activity
-# ------------------------------------------------------------------------------
-
-# Basic protection against common WordPress XSS attacks
-
-<IfModule mod_rewrite.c>
-    RewriteBase /
-    RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE|DELETE|TRACK) [NC]
-    RewriteRule ^(.*)$ - [F,L]
-    RewriteCond %{QUERY_STRING} \.\.\/ [NC,OR]
-    RewriteCond %{QUERY_STRING} ^.*\.(bash|git|hg|log|svn|swp|cvs) [NC,OR]
-    RewriteCond %{QUERY_STRING} etc/passwd [NC,OR]
-    RewriteCond %{QUERY_STRING} boot\.ini [NC,OR]
-    RewriteCond %{QUERY_STRING} ftp\:  [NC,OR]
-    RewriteCond %{QUERY_STRING} http\:  [NC,OR]
-    RewriteCond %{QUERY_STRING} https\:  [NC,OR]
-    RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
-    RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|%3D) [NC,OR]
-    RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
-    RewriteCond %{QUERY_STRING} ^.*(\[|\]|\(|\)|<|>|ê|"|;|\?|\*|=$).* [NC,OR]
-    RewriteCond %{QUERY_STRING} ^.*(&#x22;|&#x27;|&#x3C;|&#x3E;|&#x5C;|&#x7B;|&#x7C;).* [NC,OR]
-    RewriteCond %{QUERY_STRING} ^.*(%24&x).* [NC,OR]
-    RewriteCond %{QUERY_STRING} ^.*(127\.0).* [NC,OR]
-    RewriteCond %{QUERY_STRING} ^.*(globals|encode|localhost|loopback).* [NC,OR]
-    RewriteCond %{QUERY_STRING} ^.*(request|select|concat|insert|union|declare).* [NC]
-    RewriteCond %{QUERY_STRING} !^loggedout=true
-    RewriteCond %{QUERY_STRING} !^action=rp
-    RewriteCond %{HTTP_COOKIE} !^.*wordpress_logged_in_.*$
-    RewriteCond %{HTTP_REFERER} !^http://maps\.googleapis\.com(.*)$
-    RewriteRule ^(.*)$ - [F,L]
-</IfModule>
-<IfModule mod_headers.c>
-    Header set X-XSS-Protection "1; mode=block"
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
-        Header unset X-XSS-Protection
-    </FilesMatch>
-</IfModule>
-
-# Reduce WordPress comment spam
-
-<IfModule mod_rewrite.c>
-    RewriteCond %{REQUEST_METHOD} POST
-    RewriteCond %{REQUEST_URI} ^(.*)wp-comments-post\.php*
-    RewriteCond %{HTTP_REFERER} !^(.*).*
-    RewriteCond %{HTTP_REFERER} !^http://jetpack\.wordpress\.com/jetpack-comment/ [OR]
-    RewriteCond %{HTTP_USER_AGENT} ^$
-    RewriteRule ^(.*)$ - [F,L]
-</IfModule>
 
 
 # ==============================================================================
