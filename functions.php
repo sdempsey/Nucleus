@@ -71,7 +71,7 @@
     //add_image_size('your_custom_size', 1000, 500, true);
 
 
-/*  Human-readable custom image names
+/*  Add custom image sizes as choices when inserting media
    -------------------------------------------------------------------------- */
 
     //function vtl_custom_sizes( $sizes ) {
@@ -201,7 +201,7 @@
 
     function custom_acf_toolbars( $toolbars ) {
         $toolbars['Basic' ][1] = array( 'bold,italic,underline,sup,bullist,numlist,blockquote,justifyleft,justifycenter,justifyright,link,unlink,hr,code,fullscreen' );
-        $toolbars['Full' ][2] = array('formatselect,styleselect,fontselect,fontsizeselect,forecolor,pastetext,pasteword,removeformat,charmap,undo,redo' );
+        $toolbars['Full' ][2] = array('formatselect,styleselect,fontselect,fontsizeselect,forecolor,pastetext,pasteword,removeformat,charmap,code,undo,redo' );
         return $toolbars;
     }
     add_filter( 'acf/fields/wysiwyg/toolbars' , 'custom_acf_toolbars'  );
