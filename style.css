@@ -11,7 +11,7 @@
 
     TABLE OF CONTENTS
 
-    1. Defaults
+    1. Global
     2. Layout
     3. Header
     4. Footer
@@ -19,14 +19,13 @@
         5.1. Main Navigation
         5.2. Utility Navigation
         5.3. Footer Navigation
-    6. Page Defaults
-        6.1. Typography / Layout
-    7. Global Blocks
-    8. UI Elements
+    6. WYSIWYG Core Styles
+    8. Global Blocks
+    9. UI Elements
 
 
 /*  ==========================================================================
-     1. GLOBAL DEFAULTS
+     1. GLOBAL
     ==========================================================================  */
 
 ::-moz-selection { background: #0096d2; color:#fff; }
@@ -101,11 +100,8 @@ a:active {
 
 
 /*  ==========================================================================
-     6. PAGE DEFAULTS
+     6. WYSIWYG Core Styles
     ==========================================================================  */
-
-/*   6.1. Typography / Layout
-    --------------------------------------------------------------------------  */
 
 .entry h1 {
     font-size: 2em;
