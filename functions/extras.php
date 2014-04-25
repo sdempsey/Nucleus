@@ -145,4 +145,11 @@
         return $params;
     }
     add_filter( 'dynamic_sidebar_params', 'kc_dynamic_sidebar_params' );
+
+
+/*   Allow shortcodes in text widgets
+    --------------------------------------------------------------------------  */
+
+    add_filter('widget_text', 'do_shortcode');
+
 ?>
