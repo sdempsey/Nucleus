@@ -3,44 +3,35 @@
    ========================================================================== */
 
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.25;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-size: .875em;
+    line-height: 1.5;
 }
-body p {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+a {
+    color: #0174a2;
 }
-body a {
-    color: #21759b;
-}
-body blockquote {
+blockquote {
     font-style: italic;
 }
-body blockquote p:before {
-    content: "\201C";
-    display: inline;
-    padding-right: .1em;
-}
-body blockquote p:after {
-    content: "\201D";
-    display: inline;
-}
-body .alignnone {
+.alignnone {
     margin: 1em 1em 1em 0;
 }
-body .aligncenter,
-body div.aligncenter {
+.aligncenter,
+div.aligncenter {
     display:block;
     margin: .5em auto;
 }
-body .alignright {
+.alignright,
+div.alignright {
     float:right;
     margin: 0 0 1em 1em;
 }
-body .alignleft {
+.alignleft,
+div.aligncenter {
     float:left;
     margin: 0 1em 1em 0;
 }
-body .aligncenter {
+.aligncenter {
     display: block;
     margin: 1em auto;
 }
