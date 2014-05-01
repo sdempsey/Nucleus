@@ -1,9 +1,5 @@
 <?php
 
-/*  ==========================================================================
-     COMMENTS
-    ==========================================================================  */
-
 /*   Custom Comment Template
     --------------------------------------------------------------------------  */
 
@@ -152,4 +148,12 @@
 
     add_filter('widget_text', 'do_shortcode');
 
+
+/*  Increase JPG compression slightly
+   -------------------------------------------------------------------------- */
+
+    function jpeg_custom_quality( $quality ) {
+        return 70;
+    }
+    add_filter( 'jpeg_quality', 'jpeg_custom_quality' );
 ?>
