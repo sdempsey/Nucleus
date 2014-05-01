@@ -175,34 +175,31 @@
 /*  Options & Buttons
    -------------------------------------------------------------------------- */
 
-    function custom_toolbars($options) {
-        $options['wordpress_adv_hidden'] = false;
-        $options['remove_linebreaks'] = false;
-        $options['gecko_spellcheck'] = true;
-        $options['theme_advanced_more_colors'] = false;
-        $options['theme_advanced_more_lists'] = true;
-        $options['content_css'] = get_template_directory_uri() . "/css/editor-style.css";
+   function custom_tinymce($options) {
+       $options['wordpress_adv_hidden'] = false;
+       $options['plugins'] = 'tabfocus,paste,media,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpfullscreen,hr,charmap,textcolor';
+       $options['content_css'] = get_template_directory_uri() . '/css/editor-style.css';
 
-        $options['theme_advanced_buttons1'] = 'bold,italic,underline,sup,bullist,numlist,blockquote,justifyleft,justifycenter,justifyright,link,unlink,hr,wp_more,wp_page,fullscreen';
-        $options['theme_advanced_buttons2'] = 'formatselect,styleselect,fontselect,fontsizeselect,forecolor,pastetext,pasteword,removeformat,charmap,undo,redo';
-        $options['theme_advanced_blockformats'] = 'p,h1,h2,h3,h4,h5,h6,blockquote';
-        $options['theme_advanced_fonts'] = 'Helvetica=Helvetica Neue, Helvetica, Arial, sans-serif;'.
-                                           'Custom Font=Custom Font, Helvetica Neue, Helvetica, Arial, sans-serif;'.
-                                           '';
-        $options['theme_advanced_font_sizes'] = '0.5rem,0.75rem,0.875rem,1rem,1.125rem,1.25rem,1.375rem,1.5rem,1.75rem,1.875rem,2rem';
-        $options['theme_advanced_text_colors'] = 'ffffff,ba192c,20b7dd';
+       $options['toolbar1'] = 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
+       $options['toolbar2'] = 'formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,wp_help';
+       $options['theme_advanced_presentation'] = 'p,div,h1,h2,h3,h4,h5,h6,blockquote,dt,dd,code,samp';
+       $options['theme_advanced_fonts'] = 'Helvetica=Helvetica, Arial, sans-serif;'.
+                                     'Georgia=Georgia, Cambria, Times New Roman, Times, serif;'.
+                                     'Custom Font=Custom Font, Helvetica Neue, Helvetica, Arial, sans-serif;';
+       $options['theme_advanced_font_sizes'] = '0.75em,0.875em,1rem,1.125em,1.25em,1.375em,1.5em,1.75em,1.875em,2em';
+       $options['theme_advanced_text_colors'] = 'ffffff,ba192c,20b7dd';
+       return $options;
+   }
+   add_filter('tiny_mce_before_init', 'custom_tinymce');
 
-        return $options;
-    }
-    add_filter('tiny_mce_before_init', 'custom_toolbars' );
 
 /*  Advanced Custom Fields WYSIWYG Buttons
    -------------------------------------------------------------------------- */
 
-    function custom_acf_toolbars( $toolbars ) {
-        $toolbars['Basic' ][1] = array( 'bold,italic,underline,sup,bullist,numlist,blockquote,justifyleft,justifycenter,justifyright,link,unlink,hr,code,fullscreen' );
-        $toolbars['Full' ][2] = array('formatselect,styleselect,fontselect,fontsizeselect,forecolor,pastetext,pasteword,removeformat,charmap,code,undo,redo' );
-        return $toolbars;
-    }
-    add_filter( 'acf/fields/wysiwyg/toolbars' , 'custom_acf_toolbars'  );
+   function custom_acf_toolbars($toolbars) {
+       $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
+       $toolbars['Full' ][2] = array('formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,wp_help' );
+       return $toolbars;
+   }
+   add_filter('acf/fields/wysiwyg/toolbars', 'custom_acf_toolbars');
 ?>
