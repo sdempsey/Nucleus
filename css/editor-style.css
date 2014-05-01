@@ -1,6 +1,16 @@
-/* ==========================================================================
-    EDITOR STYLES
-   ========================================================================== */
+/*  ==========================================================================
+     FONTS
+
+     This makes our site's fonts available to the backend editor so we can
+     better reflect how the site's text looks. You should add these to the
+     font select menu in the WYSIWYG (via functions.php) so they are available.
+    ==========================================================================  */
+
+@import url(fonts.css);
+
+/*  ==========================================================================
+     EDITOR STYLES
+    ==========================================================================  */
 
 body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
