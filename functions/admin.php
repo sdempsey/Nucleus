@@ -43,4 +43,35 @@
     }
     add_filter('admin_footer_text', 'custom_admin_footer_text');
 
+
+/*   Tweak TinyMCE listbox styles
+    --------------------------------------------------------------------------  */
+
+    function custom_tinymce_listbox_css() {
+       echo '<style type="text/css">
+                #poststuff .mce-btn.mce-listbox {
+                    background: transparent;
+                    border-color: transparent;
+                    border-radius: 2px;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+                }
+                #poststuff .mce-btn.mce-listbox:hover {
+                    background: #fafafa;
+                    border-color: #999;
+                    color: #222;
+                    -webkit-box-shadow: inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);
+                    box-shadow: inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.08);
+                }
+                #poststuff .mce-btn.mce-active,
+                #poststuff .mce-btn:active,
+                #poststuff .mce-btn.mce-active:hover {
+                    background: #ebebeb;
+                    border-color: #999;
+                    -webkit-box-shadow: inset 0 2px 5px -3px rgba(0,0,0,.3);
+                    box-shadow: inset 0 2px 5px -3px rgba(0,0,0,.3);
+                }
+             </style>';
+    }
+    add_action('admin_head', 'custom_tinymce_listbox_css');
 ?>
