@@ -4,9 +4,9 @@
     require_once locate_template('/functions/extras.php');
     require_once locate_template('/functions/pagination.php');
 
-/* ==========================================================================
-    SCRIPTS, STYLESHEETS, AND FAVICONS
-   ========================================================================== */
+/*  ==========================================================================
+     SCRIPTS, STYLESHEETS, AND FAVICONS
+    ========================================================================== */
 
     function script_enqueuer() {
 
@@ -31,33 +31,9 @@
     add_action( 'wp_enqueue_scripts', 'script_enqueuer' );
 
 
-/*  IE-specific
-   -------------------------------------------------------------------------- */
-
-    function add_ie_scripts () {
-        global $is_IE;
-        if ($is_IE) {
-            echo '<!--[if lt IE 9]>'."\n";
-            echo '<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>'."\n";
-            echo '<![endif]-->'."\n";
-        }
-    }
-    add_action('wp_footer', 'add_ie_scripts', 1);
-
-
-/*   Favicons
-    --------------------------------------------------------------------------  */
-
-    function add_favicons() {
-        echo '<link rel="shortcut icon" href="' . get_stylesheet_directory_uri() . '/images/favicon.ico">'."\n";
-        echo '<link rel="apple-touch-icon-precomposed" href="' . get_stylesheet_directory_uri() . '/images/apple-touch-icon-precomposed.png" />'."\n";
-    }
-    add_action('wp_head', 'add_favicons');
-
-
-/* ==========================================================================
-    IMAGES & MEDIA
-   ========================================================================== */
+/*  ==========================================================================
+     IMAGES & MEDIA
+    ========================================================================== */
 
 /*   Oembed object maximum width
     --------------------------------------------------------------------------  */
@@ -65,14 +41,14 @@
     if ( !isset( $content_width ) )
         $content_width = 660;
 
-/*  Custom image sizes
-   -------------------------------------------------------------------------- */
+/*   Custom image sizes
+    -------------------------------------------------------------------------- */
 
     //add_image_size('your_custom_size', 1000, 500, true);
 
 
-/*  Add custom image sizes as choices when inserting media
-   -------------------------------------------------------------------------- */
+/*   Add custom image sizes as choices when inserting media
+    -------------------------------------------------------------------------- */
 
     //function vtl_custom_sizes( $sizes ) {
     //    return array_merge( $sizes, array(
@@ -82,18 +58,9 @@
     //add_filter( 'image_size_names_choose', 'vtl_custom_sizes' );
 
 
-/*  JPG compression
-   -------------------------------------------------------------------------- */
-
-    function jpeg_custom_quality( $quality ) {
-        return 70;
-    }
-    add_filter( 'jpeg_quality', 'jpeg_custom_quality' );
-
-
-/* ==========================================================================
-    MENUS
-   ========================================================================== */
+/*  ==========================================================================
+     MENUS
+    ========================================================================== */
 
     register_nav_menus(array(
         'main_nav' => 'Main Navigation',
@@ -101,33 +68,22 @@
     ));
 
 
-/* ==========================================================================
-    WIDGETS
-   ========================================================================== */
+/*  ==========================================================================
+     WIDGETS
+    ========================================================================== */
 
 
-/* ==========================================================================
-    SHORTCODES
-   ========================================================================== */
+/*  ==========================================================================
+     SHORTCODES
+    ========================================================================== */
 
 
-/* ==========================================================================
-    SITE-SPECIFIC
-   ========================================================================== */
+/*  ==========================================================================
+     SITE-SPECIFIC CUSTOMIZATIONS
+    ========================================================================== */
 
-/*   Add theme support
-   --------------------------------------------------------------------------  */
-
-    function vtl_add_theme_support() {
-
-         // Add featured image support for only specific post types
-         add_theme_support( 'post-thumbnails', array( 'post' ) );
-    }
-    add_action( 'after_setup_theme', 'vtl_add_theme_support', 11 );
-
-
-/*  Customize login
-  -------------------------------------------------------------------------- */
+/*   Customize login
+    -------------------------------------------------------------------------- */
 
     // function custom_login_logo() {
     //     echo "<style>
@@ -143,63 +99,104 @@
     // add_action("login_head", "custom_login_logo");
 
 
-/* ==========================================================================
-    CUSTOM TOOLBARS
-   ========================================================================== */
+/*  ==========================================================================
+     EDITOR CUSTOMIZATIONS
+    ==========================================================================  */
 
-/*  Custom Styles
-    http://codex.wordpress.org/TinyMCE_Custom_Styles#Style_Format_Arguments
-   -------------------------------------------------------------------------- */
+/*   Custom Styles
+     http://codex.wordpress.org/TinyMCE_Custom_Styles#Style_Format_Arguments
 
-    // function my_mce_styles( $init_array ) {
-    //     $style_formats = array(
+     Uncomment the following lines to create arrays of custom styles.
+     Add "styleselect" to the toolbar arrays to add the dropdown to the editor.
+    -------------------------------------------------------------------------- */
+
+    // function custom_tinymce_styles($custom_styles) {
+    //     $styles = array(
     //         array(
-    //             'title' => 'Style 1',
-    //             'block' => 'div',
-    //             'classes' => 'style-class-1',
-    //             'wrapper' => true,
-
-    //         ),
+    //             'title' => 'Text',
+    //             'items' => array(
+    //                 array(
+    //                     'title' => 'Intro Text',
+    //                     'selector' => 'p',
+    //                     'classes' => 'intro-text',
+    //                     'wrapper' => false
+    //                     ),
+    //                 array(
+    //                     'title' => 'Pull Quote',
+    //                     'selector' => 'p',
+    //                     'classes' => 'pull-quote',
+    //                     'wrapper' => false
+    //                     )
+    //                 )
+    //             ),
     //         array(
-    //             'title' => 'Red Button',
-    //             'selector' => 'a',
-    //             'classes' => 'red-button',
-    //             'wrapper' => false,
-    //         )
-    //     );
-    //     $init_array['style_formats'] = json_encode( $style_formats );
-    //     return $init_array;
+    //             'title' => 'Buttons',
+    //             'items' => array(
+    //                 array(
+    //                     'title' => 'Red Button',
+    //                     'selector' => 'a',
+    //                     'classes' => 'red-button',
+    //                     'wrapper' => false
+    //                     ),
+    //                 array(
+    //                     'title' => 'Blue Button',
+    //                     'selector' => 'a',
+    //                     'classes' => 'blue-button',
+    //                     'wrapper' => false
+    //                     )
+    //                 )
+    //             ),
+    //         array(
+    //             'title' => 'Blocks',
+    //             'items' => array(
+    //                 array(
+    //                     'title' => 'Call to Action',
+    //                     'block' => 'div',
+    //                     'classes' => 'cta',
+    //                     'wrapper' => true
+    //                     )
+    //                 )
+    //             )
+    //         );
+
+    //     $custom_styles['style_formats'] = json_encode( $styles );
+    //     return $custom_styles;
     // }
-    // add_filter( 'tiny_mce_before_init', 'my_mce_styles' );
-
-/*  Options & Buttons
-   -------------------------------------------------------------------------- */
-
-   function custom_tinymce($options) {
-       $options['wordpress_adv_hidden'] = false;
-       $options['plugins'] = 'tabfocus,paste,media,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpfullscreen,hr,charmap,textcolor';
-       $options['content_css'] = get_template_directory_uri() . '/css/editor-style.css';
-
-       $options['toolbar1'] = 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
-       $options['toolbar2'] = 'formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,wp_help';
-       $options['theme_advanced_presentation'] = 'p,div,h1,h2,h3,h4,h5,h6,blockquote,dt,dd,code,samp';
-       $options['theme_advanced_fonts'] = 'Helvetica=Helvetica, Arial, sans-serif;'.
-                                     'Georgia=Georgia, Cambria, Times New Roman, Times, serif;'.
-                                     'Custom Font=Custom Font, Helvetica Neue, Helvetica, Arial, sans-serif;';
-       $options['theme_advanced_font_sizes'] = '0.75em,0.875em,1rem,1.125em,1.25em,1.375em,1.5em,1.75em,1.875em,2em';
-       $options['theme_advanced_text_colors'] = 'ffffff,ba192c,20b7dd';
-       return $options;
-   }
-   add_filter('tiny_mce_before_init', 'custom_tinymce');
+    // add_filter( 'tiny_mce_before_init', 'custom_tinymce_styles' );
 
 
-/*  Advanced Custom Fields WYSIWYG Buttons
-   -------------------------------------------------------------------------- */
+/*   Options & Buttons
+    -------------------------------------------------------------------------- */
 
-   function custom_acf_toolbars($toolbars) {
-       $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
-       $toolbars['Full' ][2] = array('formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,wp_help' );
-       return $toolbars;
-   }
-   add_filter('acf/fields/wysiwyg/toolbars', 'custom_acf_toolbars');
+    function custom_tinymce($options) {
+        $options['wordpress_adv_hidden'] = false;
+        $options['plugins'] = 'tabfocus,paste,media,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpfullscreen,hr,charmap,textcolor';
+        $options['content_css'] = get_template_directory_uri() . '/css/editor-style.css';
+
+        $options['toolbar1'] = 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
+        $options['toolbar2'] = 'formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,wp_help';
+        $options['block_formats'] = 'Paragraph=p; Blockquote=blockquote; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6';
+        $options['fontsize_formats'] = '0.75em 0.875em 1rem 1.125em 1.25em 1.375em 1.5em 1.75em 1.875em 2em';
+        $options['color_formats'] = 'ffffff ba192c 20b7dd';
+
+        // Uncomment this if you want to add a font select list.
+        // Add "fontselect" to the toolbar arrays to add the dropdown to the editor.
+        // $options['font_formats'] = 'Helvetica=Helvetica, Arial, sans-serif;'.
+        //                            'Georgia=Georgia, Cambria, Times New Roman, Times, serif;'.
+        //                            'Custom Font=Custom Font, Helvetica Neue, Helvetica, Arial, sans-serif';
+
+        return $options;
+    }
+    add_filter('tiny_mce_before_init', 'custom_tinymce');
+
+
+/*   Advanced Custom Fields WYSIWYG Buttons
+    -------------------------------------------------------------------------- */
+
+    function custom_acf_toolbars($toolbars) {
+        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
+        $toolbars['Full' ][2] = array('formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,wp_help' );
+        return $toolbars;
+    }
+    add_filter('acf/fields/wysiwyg/toolbars', 'custom_acf_toolbars');
 ?>
