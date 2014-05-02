@@ -195,7 +195,7 @@ a:active {
     border-top: 1px solid #ccc;
 }
 .entry code,
-.entry pre, {
+.entry pre {
     font-family: monospace;
     font-size: 1em;
 }
@@ -237,6 +237,9 @@ a:active {
 .entry ol {
     list-style-type: decimal;
 }
+.entry li {
+    font-size: 1em;
+}
 .entry table {
     margin: 0;
     padding: 0;
@@ -257,16 +260,10 @@ a:active {
 .entry table tr:nth-child(even) {
     background: #eee;
 }
-.entry .sticky,
-.entry .bypostauthor,
-.entry .gallery-caption {
-    display: block;
-}
 .entry .alignnone {
     margin: 1em 1em 1em 0;
 }
-.entry .aligncenter,
-.entry div.aligncenter {
+.entry .aligncenter {
     display:block;
     margin: .5em auto;
 }
@@ -316,15 +313,6 @@ a:active {
 .entry iframe {
     max-width: 100%;
 }
-.responsive-table {
-    overflow-y: scroll;
-}
-@media screen and (min-width: 768px){
-    .responsive-table {
-        overflow: visible;
-    }
-}
-
 
 /*  ==========================================================================
      7. GLOBAL BLOCKS

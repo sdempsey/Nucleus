@@ -26,18 +26,11 @@ blockquote {
 .alignnone {
     margin: 1em 1em 1em 0;
 }
-.aligncenter,
-div.aligncenter {
-    display:block;
-    margin: .5em auto;
-}
-.alignright,
-div.alignright {
+.alignright {
     float:right;
     margin: 0 0 1em 1em;
 }
-.alignleft,
-div.aligncenter {
+.alignleft {
     float:left;
     margin: 0 1em 1em 0;
 }
