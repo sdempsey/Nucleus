@@ -84,27 +84,6 @@
     }
 
 
-/*   HUMAN-FRIENDLY POST DATES
-
-     Prints human friendly dates (ie. "2 days ago") if the post is less than
-     one week old. Otherwise, it displays a standard datestamp.
-    --------------------------------------------------------------------------  */
-
-    function human_friendly_date() {
-        global $post;
-        $today = date("r");
-        $postdate = get_the_time('r');
-        $difference = round((strtotime($today) - strtotime($postdate))/(24*60*60),0);
-        if ($difference >= 7) {
-            $humandate = the_time('F j, Y');
-        } else {
-            $humandate = human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
-        }
-        $humandate = str_replace('mins', 'minutes', $humandate);
-        echo $humandate;
-    }
-
-
 /*   ADD CUSTOM CLASSES FIELD TO WIDGETS
      http://kucrut.org/add-custom-classes-to-any-widget
     --------------------------------------------------------------------------  */
