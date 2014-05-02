@@ -173,7 +173,7 @@
         $options['plugins'] = 'tabfocus,paste,media,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpfullscreen,hr,charmap,textcolor';
         $options['content_css'] = get_template_directory_uri() . '/css/editor-style.css';
 
-        $options['toolbar1'] = 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
+        $options['toolbar1'] = 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
         $options['toolbar2'] = 'formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,wp_help';
         $options['block_formats'] = 'Paragraph=p; Blockquote=blockquote; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6';
         $options['fontsize_formats'] = '0.75em 0.875em 1rem 1.125em 1.25em 1.375em 1.5em 1.75em 1.875em 2em';
@@ -200,7 +200,7 @@
     -------------------------------------------------------------------------- */
 
     function custom_acf_toolbars($toolbars) {
-        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
+        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
         $toolbars['Full' ][2] = array('formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,wp_help' );
         return $toolbars;
     }
