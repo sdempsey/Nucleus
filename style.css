@@ -264,15 +264,15 @@ a:active {
     margin: 1em 1em 1em 0;
 }
 .entry .aligncenter {
-    display:block;
+    display: block;
     margin: .5em auto;
 }
 .entry .alignright {
-    float:right;
+    float: right;
     margin: 0 0 1em 1em;
 }
 .entry .alignleft {
-    float:left;
+    float: left;
     margin: 0 1em 1em 0;
 }
 .entry .aligncenter {
@@ -312,6 +312,13 @@ a:active {
 }
 .entry iframe {
     max-width: 100%;
+}
+@media only screen and (max-width: 30em) {
+
+    .entry p,
+    .entry li {
+        font-size: .875em;
+    }
 }
 
 /*  ==========================================================================
