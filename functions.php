@@ -202,9 +202,9 @@
     -------------------------------------------------------------------------- */
 
     function custom_acf_toolbars($toolbars) {
-        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
+        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,code,fullscreen' );
         $toolbars['Full' ][1] = array( 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
-        $toolbars['Full' ][2] = array('formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,wp_help' );
+        $toolbars['Full' ][2] = array('formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,code,wp_help' );
         return $toolbars;
     }
     add_filter('acf/fields/wysiwyg/toolbars', 'custom_acf_toolbars');
