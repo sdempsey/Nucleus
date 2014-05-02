@@ -177,7 +177,13 @@
         $options['toolbar2'] = 'formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,wp_help';
         $options['block_formats'] = 'Paragraph=p; Blockquote=blockquote; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6';
         $options['fontsize_formats'] = '0.75em 0.875em 1rem 1.125em 1.25em 1.375em 1.5em 1.75em 1.875em 2em';
-        $options['color_formats'] = 'ffffff ba192c 20b7dd';
+
+        // Uncomment if you want a color picker
+        // Add 'forecolor' to the toolbar arrays to add button
+        // $options['textcolor_map'] = '['.'
+        //     "000000", "Black",
+        //     "ffffff", "White"
+        // '.']';
 
         // Uncomment this if you want to add a font select list.
         // Add "fontselect" to the toolbar arrays to add the dropdown to the editor.
