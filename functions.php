@@ -202,6 +202,7 @@
     -------------------------------------------------------------------------- */
 
     function custom_acf_toolbars($toolbars) {
+        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
         $toolbars['Full' ][1] = array( 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
         $toolbars['Full' ][2] = array('formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,wp_help' );
         return $toolbars;
