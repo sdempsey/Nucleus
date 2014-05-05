@@ -170,11 +170,14 @@
 /*   Options & Buttons
     -------------------------------------------------------------------------- */
 
+    function custom_editor_styles() {
+        add_editor_style( get_template_directory_uri() . '/css/editor-style.css' );
+    }
+    add_action( 'init', 'custom_editor_styles' );
+
     function custom_tinymce($options) {
         $options['wordpress_adv_hidden'] = false;
         $options['plugins'] = 'tabfocus,paste,media,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpfullscreen,hr,charmap,textcolor';
-        $options['content_css'] = get_template_directory_uri() . '/css/editor-style.css';
-
         $options['toolbar1'] = 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
         $options['toolbar2'] = 'formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,wp_help';
         $options['block_formats'] = 'Paragraph=p; Blockquote=blockquote; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6';
