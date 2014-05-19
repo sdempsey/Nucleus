@@ -97,7 +97,7 @@ Options -MultiViews
     AddType application/vnd.ms-fontobject               eot
     AddType application/x-font-ttf                      ttc ttf
     AddType font/opentype                               otf
-    AddType image/svg+xml                               svgz
+    AddType image/svg+xml                               svg svgz
     AddEncoding gzip                                    svgz
     AddType application/octet-stream                    safariextz
     AddType application/x-chrome-extension              crx
