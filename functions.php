@@ -107,64 +107,61 @@
 
 /*   Custom Styles
      http://codex.wordpress.org/TinyMCE_Custom_Styles#Style_Format_Arguments
-
-     Uncomment the following lines to create arrays of custom styles.
-     Add "styleselect" to the toolbar arrays to add the dropdown to the editor.
     -------------------------------------------------------------------------- */
 
-    // function custom_tinymce_styles($custom_styles) {
-    //     $styles = array(
-    //         array(
-    //             'title' => 'Text',
-    //             'items' => array(
-    //                 array(
-    //                     'title' => 'Intro Text',
-    //                     'selector' => 'p',
-    //                     'classes' => 'intro-text',
-    //                     'wrapper' => false
-    //                     ),
-    //                 array(
-    //                     'title' => 'Pull Quote',
-    //                     'selector' => 'p',
-    //                     'classes' => 'pull-quote',
-    //                     'wrapper' => false
-    //                     )
-    //                 )
-    //             ),
-    //         array(
-    //             'title' => 'Buttons',
-    //             'items' => array(
-    //                 array(
-    //                     'title' => 'Red Button',
-    //                     'selector' => 'a',
-    //                     'classes' => 'red-button',
-    //                     'wrapper' => false
-    //                     ),
-    //                 array(
-    //                     'title' => 'Blue Button',
-    //                     'selector' => 'a',
-    //                     'classes' => 'blue-button',
-    //                     'wrapper' => false
-    //                     )
-    //                 )
-    //             ),
-    //         array(
-    //             'title' => 'Blocks',
-    //             'items' => array(
-    //                 array(
-    //                     'title' => 'Call to Action',
-    //                     'block' => 'div',
-    //                     'classes' => 'cta',
-    //                     'wrapper' => true
-    //                     )
-    //                 )
-    //             )
-    //         );
+    function custom_tinymce_styles($custom_styles) {
+        $styles = array(
+            array(
+                'title' => 'Text',
+                'items' => array(
+                    array(
+                        'title' => 'Intro Text',
+                        'selector' => 'p',
+                        'classes' => 'intro-text',
+                        'wrapper' => false
+                        ),
+                    array(
+                        'title' => 'Pull Quote',
+                        'selector' => 'p',
+                        'classes' => 'pull-quote',
+                        'wrapper' => false
+                        )
+                    )
+                ),
+            array(
+                'title' => 'Buttons',
+                'items' => array(
+                    array(
+                        'title' => 'Red Button',
+                        'selector' => 'a',
+                        'classes' => 'red-button',
+                        'wrapper' => false
+                        ),
+                    array(
+                        'title' => 'Blue Button',
+                        'selector' => 'a',
+                        'classes' => 'blue-button',
+                        'wrapper' => false
+                        )
+                    )
+                ),
+            array(
+                'title' => 'Blocks',
+                'items' => array(
+                    array(
+                        'title' => 'Call to Action',
+                        'block' => 'div',
+                        'classes' => 'cta',
+                        'wrapper' => true
+                        )
+                    )
+                )
+            );
 
-    //     $custom_styles['style_formats'] = json_encode( $styles );
-    //     return $custom_styles;
-    // }
-    // add_filter( 'tiny_mce_before_init', 'custom_tinymce_styles' );
+        $custom_styles['style_formats'] = json_encode( $styles );
+        return $custom_styles;
+    }
+    add_filter( 'tiny_mce_before_init', 'custom_tinymce_styles' );
 
 
 /*   Options & Buttons
@@ -178,23 +175,21 @@
     function custom_tinymce($options) {
         $options['wordpress_adv_hidden'] = false;
         $options['plugins'] = 'tabfocus,paste,media,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpfullscreen,hr,charmap,textcolor';
-        $options['toolbar1'] = 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
-        $options['toolbar2'] = 'formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,wp_help';
+        $options['toolbar1'] = 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
+        $options['toolbar2'] = 'formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,wp_help';
         $options['block_formats'] = 'Paragraph=p; Blockquote=blockquote; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6';
         $options['fontsize_formats'] = '0.75em 0.875em 1rem 1.125em 1.25em 1.375em 1.5em 1.75em 1.875em 2em';
 
-        // Uncomment if you want a color picker
-        // Add 'forecolor' to the toolbar arrays to add button
-        // $options['textcolor_map'] = '['.'
-        //     "000000", "Black",
-        //     "ffffff", "White"
-        // '.']';
+        // Color Picker
+        $options['textcolor_map'] = '['.'
+            "ffffff", "White",
+            "000000", "Black"
+        '.']';
 
-        // Uncomment this if you want to add a font select list.
-        // Add "fontselect" to the toolbar arrays to add the dropdown to the editor.
-        // $options['font_formats'] = 'Helvetica=Helvetica, Arial, sans-serif;'.
-        //                            'Georgia=Georgia, Cambria, Times New Roman, Times, serif;'.
-        //                            'Custom Font=Custom Font, Helvetica Neue, Helvetica, Arial, sans-serif';
+        // Font Families
+        // The last family listed must NOT have a semicolon before the closing quote. See Georgia for example.
+        $options['font_formats'] = 'Helvetica=Helvetica, Arial, sans-serif;'.
+                                   'Georgia=Georgia, Cambria, Times New Roman, Times, serif';
 
         return $options;
     }
@@ -205,9 +200,9 @@
     -------------------------------------------------------------------------- */
 
     function custom_acf_toolbars($toolbars) {
-        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,code,fullscreen' );
-        $toolbars['Full' ][1] = array( 'bold,italic,underline,superscript,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
-        $toolbars['Full' ][2] = array('formatselect,fontsizeselect,pastetext,charmap,removeformat,undo,redo,code,wp_help' );
+        $toolbars['Basic' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,code,fullscreen' );
+        $toolbars['Full' ][1] = array( 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen' );
+        $toolbars['Full' ][2] = array('formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,code,wp_help' );
         return $toolbars;
     }
     add_filter('acf/fields/wysiwyg/toolbars', 'custom_acf_toolbars');
