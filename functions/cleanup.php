@@ -34,6 +34,16 @@
     add_filter('style_loader_tag', 'clean_style_tag');
 
 
+/*   Limit number of post revisions kept
+    --------------------------------------------------------------------------  */
+
+    function custom_revisions_number($num, $post) {
+        $num = 12;
+        return $num;
+    }
+    add_filter('wp_revisions_to_keep', 'custom_revisions_number', 10, 2);
+
+
 /*   Remove pages from search results
     --------------------------------------------------------------------------  */
 
