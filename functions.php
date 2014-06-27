@@ -40,13 +40,13 @@
 /*   Backend Enqueuer
     --------------------------------------------------------------------------  */
 
-    function backend_enqueuer($hook) {
+    // function backend_enqueuer($hook) {
 
-        if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-            wp_enqueue_style( 'google_fonts', 'http://fonts.googleapis.com/css?family=Bonbon' );
-        }
-    }
-    add_action( 'admin_enqueue_scripts', 'backend_enqueuer' );
+    //     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+    //         wp_enqueue_style( 'google_fonts', 'http://fonts.googleapis.com/css?family=Bonbon' );
+    //     }
+    // }
+    // add_action( 'admin_enqueue_scripts', 'backend_enqueuer' );
 
 
 /*  ==========================================================================
