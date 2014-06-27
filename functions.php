@@ -8,7 +8,10 @@
      SCRIPTS, STYLESHEETS, AND FAVICONS
     ========================================================================== */
 
-    function script_enqueuer() {
+/*   Frontend Enqueuer
+    --------------------------------------------------------------------------  */
+
+    function frontend_enqueuer() {
 
         wp_enqueue_style( 'reset', get_template_directory_uri() . '/css/reset.css', '1.0', 'screen' );
         wp_enqueue_style( 'fonts', get_template_directory_uri() . '/css/fonts.css', '1.0', 'screen' );
@@ -31,7 +34,19 @@
         );
         wp_localize_script( 'site', 'SiteInfo', $site_info );
     }
-    add_action( 'wp_enqueue_scripts', 'script_enqueuer' );
+    add_action( 'wp_enqueue_scripts', 'frontend_enqueuer' );
+
+
+/*   Backend Enqueuer
+    --------------------------------------------------------------------------  */
+
+    function backend_enqueuer($hook) {
+
+        if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+            wp_enqueue_style( 'google_fonts', 'http://fonts.googleapis.com/css?family=Bonbon' );
+        }
+    }
+    add_action( 'admin_enqueue_scripts', 'backend_enqueuer' );
 
 
 /*  ==========================================================================
