@@ -38,16 +38,3 @@ blockquote {
     display: block;
     margin: 1em auto;
 }
-#tinymce div {
-    position: relative;
-    border: 1px dashed #ccc;
-}
-#tinymce div:after {
-    content: "<div>";
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    color: #ccc;
-    font-family: monospace;
-    font-size: 1em;
-}
