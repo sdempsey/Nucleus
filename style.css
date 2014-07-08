@@ -104,47 +104,42 @@ a:active {
     ==========================================================================  */
 
 .entry h1 {
-    font-size: 2em;
     margin-top: 1.67em;
     margin-bottom: .5em;
+    font-size: 2em;
 }
 .entry h2 {
+    margin: 1.2em 0 .4em;
     font-size: 1.5em;
-    margin-top: 1.2em;
-    margin-bottom: .4em;
 }
 .entry h1 + h2 {
     margin-top: -.5em;
 }
 .entry h3 {
+    margin: 1.8em 0 .4em;
     font-size: 1.25em;
-    margin-top: 1.8em;
-    margin-bottom: .4em;
 }
 .entry h2 + h3 {
     margin-top: -.4em;
     margin-bottom: .2em;
 }
 .entry h4 {
+    margin: 1.8em 0 .4em;
     font-size: 1em;
-    margin-top: 1.8em;
-    margin-bottom: .4em;
 }
 .entry h3 + h4 {
     margin-top: -.3em;
 }
 .entry h5 {
+    margin: 1.8em 0 .4em;
     font-size: 1em;
-    margin-top: 1.8em;
-    margin-bottom: .4em;
 }
 .entry h4 + h5 {
     margin-top: -.3em;
 }
 .entry h6 {
+    margin: 1.8em 0 .4em;
     font-size: 1em;
-    margin-top: 1.8em;
-    margin-bottom: .4em;
 }
 .entry h5 + h6 {
     margin-top: -.2em;
@@ -247,13 +242,12 @@ a:active {
 .entry table th,
 .entry table td {
     padding: .625em 1.25em;
-    text-align: left;
     border-bottom: 1px solid #ccc;
+    text-align: left;
 }
 .entry table th {
     border-width: 2px;
 }
-.entry table tr:last-child th,
 .entry table tr:last-child td {
     border-bottom: none;
 }
@@ -297,9 +291,9 @@ a:active {
     margin: 1em auto;
 }
 .entry .wp-caption {
+    max-width: 96%;
     margin-bottom: 1em;
     margin-left: 0;
-    max-width: 96%;
     text-align: center;
 }
 .entry .wp-caption img {
