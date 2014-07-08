@@ -1,7 +1,8 @@
 <?php
+    require_once locate_template('/functions/seo.php');
     require_once locate_template('/functions/admin.php');
-    require_once locate_template('/functions/cleanup.php');
     require_once locate_template('/functions/extras.php');
+    require_once locate_template('/functions/cleanup.php');
     require_once locate_template('/functions/pagination.php');
 
 /*  ==========================================================================
