@@ -65,21 +65,6 @@
     add_filter('the_content', 'filter_ptags_on_images');
 
 
-/*  Clean up shortcode output
-   -------------------------------------------------------------------------- */
-
-    function clean_shortcodes($content){
-        $array = array (
-            '<p>[' => '[',
-            ']</p>' => ']',
-            ']<br />' => ']'
-        );
-        $content = strtr($content, $array);
-        return $content;
-    }
-    add_filter('the_content', 'clean_shortcodes');
-
-
 /*  Remove #more jump link on posts
    -------------------------------------------------------------------------- */
 
