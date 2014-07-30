@@ -51,15 +51,9 @@ a {
     color: #0096d2;
     text-decoration: none;
 }
-a:hover,
-a:active {
-    color: #000;
-    outline: 0;
-}
 .group:before,
 .group:after { content: " "; display: table; }
 .group:after { clear: both; }
-.group { *zoom: 1; }
 
 .screen-reader-text {
     position: absolute !important;
