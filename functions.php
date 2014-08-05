@@ -110,15 +110,15 @@
     // function custom_login_logo() {
     //     echo "<style>
     //     body.login #login h1 a {
-    //          background: url('".get_bloginfo('template_url')."/images/custom-logo.png') no-repeat scroll center top transparent;
-    //          width: 274px;
-    //          height: 63px;
+    //          background: url('".get_template_directory_uri()."/images/custom-logo.png') no-repeat scroll center top transparent;
+    //          width: 320px;
+    //          height: 100px;
     //     }
     //     </style>";
     // }
-    // add_filter('login_headerurl', create_function(false,"return '".home_url()."';")); // Logo link
-    // add_filter('login_headertitle', create_function(false,"return 'Powered by WordPress';")); // Logo tooltip text
-    // add_action("login_head", "custom_login_logo");
+    // add_filter('login_headerurl', create_function(false,"return '".home_url()."';"));
+    // add_filter('login_headertitle', create_function(false,"return '".get_bloginfo('name')."';"));
+    // add_action('login_head', 'custom_login_logo');
 
 
 /*  ==========================================================================
