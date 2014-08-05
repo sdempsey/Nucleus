@@ -12,6 +12,7 @@
                     <?php echo get_avatar( $comment, 96, '', get_comment_author() ); ?>
                     <h4 class="comment-author"><?php comment_author_link() ?></h4>
                     <time class="comment-time"><a href="#comment-<?php comment_ID() ?>" pubdate><?php comment_date() ?> at <?php comment_time() ?></a></time>
+                    <?php edit_comment_link(__('Edit Comment')); ?>
                 </div>
                 <div class="comment-text">
                     <?php comment_text() ?>
