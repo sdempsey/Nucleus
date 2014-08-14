@@ -4,6 +4,6 @@ jQuery(document).ready(function($) {
     //$('body').find('img:not([alt])').attr('alt', SiteInfo.the_awesome_title);
 
     // Remove no-js class on HTML element (Keep this at the end)
-    $('html').removeClass('no-js');
+    $('html').addClass('js-ready');
 
 });
