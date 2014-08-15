@@ -30,9 +30,9 @@
          * Usage: SiteInfo.theme_directory + '/scripts/widget.js'
          */
         $site_info = array(
-            'home_url'          => get_home_url(),
-            'theme_directory'   => get_template_directory_uri(),
-            'the_awesome_title' => get_the_title()
+            'home_url'        => get_home_url(),
+            'theme_directory' => get_template_directory_uri(),
+            'the_title'       => get_the_title()
         );
         wp_localize_script( 'site', 'SiteInfo', $site_info );
     }
