@@ -45,7 +45,6 @@ body {
     font-weight: normal;
     font-style: normal;
     line-height: 1.25;
-    -webkit-font-smoothing: antialiased;
 }
 a {
     color: #0096d2;
