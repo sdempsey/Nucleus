@@ -13,7 +13,6 @@
 
     function frontend_enqueuer() {
 
-        wp_enqueue_style( 'reset', get_template_directory_uri() . '/css/normalize.min.css', null, '3.0.1' );
         wp_enqueue_style( 'fonts', get_template_directory_uri() . '/css/fonts.css', null, '1.0' );
         wp_enqueue_style( 'style', get_stylesheet_uri(), null, '1.0', 'screen' );
 
