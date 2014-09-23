@@ -168,11 +168,11 @@ a {
 .entry h5 + h6 {
     margin-top: -.2em;
 }
-.entry h1:first-child
-.entry h2:first-child
-.entry h3:first-child
-.entry h4:first-child
-.entry h5:first-child
+.entry h1:first-child,
+.entry h2:first-child,
+.entry h3:first-child,
+.entry h4:first-child,
+.entry h5:first-child,
 .entry h6:first-child {
     margin-top: 0;
 }
