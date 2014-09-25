@@ -37,17 +37,17 @@
             $start_page = 1;
         }
         echo $before.'<nav class="pagination"><ol>'."";
-        echo '<li class="prev-link">';
+        echo '<li class="page-link prev-page">';
         previous_posts_link('&larr; Newer');
         echo '</li>';
         for($i = $start_page; $i  <= $end_page; $i++) {
             if($i == $paged) {
-                echo '<li class="current-page">'.$i.'</li>';
+                echo '<li class="page-link current-page">'.$i.'</li>';
             } else {
-                echo '<li><a href="'.get_pagenum_link($i).'">'.$i.'</a></li>';
+                echo '<li class="page-link"><a href="'.get_pagenum_link($i).'">'.$i.'</a></li>';
             }
         }
-        echo '<li class="next-link">';
+        echo '<li class="page-link next-page">';
         next_posts_link('Older &rarr;');
         echo '</li>';
         echo '</ol></nav>'.$after."";
