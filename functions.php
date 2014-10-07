@@ -37,18 +37,6 @@
     add_action( 'wp_enqueue_scripts', 'frontend_enqueuer' );
 
 
-/*   Backend Enqueuer
-    --------------------------------------------------------------------------  */
-
-    // function backend_enqueuer($hook) {
-
-    //     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-    //         wp_enqueue_style( 'google_fonts', 'http://fonts.googleapis.com/css?family=Bonbon' );
-    //     }
-    // }
-    // add_action( 'admin_enqueue_scripts', 'backend_enqueuer' );
-
-
 /*  ==========================================================================
      IMAGES & MEDIA
     ========================================================================== */
@@ -192,7 +180,6 @@
 
     function custom_tinymce($options) {
         $options['wordpress_adv_hidden'] = false;
-        $options['plugins'] = 'tabfocus,paste,media,fullscreen,wordpress,wpeditimage,wpgallery,wplink,wpdialogs,wpfullscreen,hr,charmap,textcolor';
         $options['toolbar1'] = 'bold,italic,underline,superscript,forecolor,alignleft,aligncenter,alignright,outdent,indent,bullist,numlist,hr,link,unlink,wp_more,fullscreen';
         $options['toolbar2'] = 'formatselect,fontselect,fontsizeselect,styleselect,pastetext,charmap,removeformat,undo,redo,wp_help';
         $options['block_formats'] = 'Paragraph=p; Blockquote=blockquote; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6';
