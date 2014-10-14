@@ -1,0 +1,24 @@
+{
+  "name": "Nucleus",
+  "version": "0.1.0",
+  "description": "Vitals blank WordPress theme - Now with 100% more grunt",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://seandumps@github.com/VitalDevTeam/Nucleus.git"
+  },
+  "keywords": [
+    "WordPress",
+    "grunt",
+    "vital"
+  ],
+  "author": "Sean Dempsey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VitalDevTeam/Nucleus/issues"
+  },
+  "homepage": "https://github.com/VitalDevTeam/Nucleus"
+}
