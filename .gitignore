@@ -1,9 +1,3 @@
 .sass-cache/
 .DS_Store
 node_modules/
-public/library/js/scripts.js
-public/library/js/scripts.min.js
-public/library/js/*.min.js.map
-public/library/css/screen.css
-public/library/css/*.min.css
-public/library/css/*.css.map
