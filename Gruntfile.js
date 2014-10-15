@@ -85,11 +85,35 @@ module.exports = function(grunt) {
 			myIcons: {
 				files: [{
 					expand: true,
-					cwd: 'images/icons'
-				}]
+					cwd: 'images/icons',
+					src: ['*.svg', '*.png'],
+					dest: 'images/icons/grunticon'
+				}],
+				options: {
+					pngfoler: 'images/icons/png'
+				}
+			}
+		},
+		clean: ["**/tmp"],
+		watch: {
+			options: { livereload: true},
+			scripts: {
+				files: 'scripts/src/*.js',
+				tasks: ['js']
+			},
+			css: {
+				files: 'sass/*.scss',
+				tasks: ['css']
+			},
+			img: {
+				files: 'images/src/**/*.{jpg,gif,png,svg}',
+				tasks: ['img']
+			},
+			php: {
+				files: '*.php',
+				tasks: []
 			}
 		}
-
 	});
 	
 	grunt.loadNpmTasks('grunt-contrib-watch');
@@ -104,4 +128,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-newer');
 	grunt.loadNpmTasks('grunt-criticalcss');
 	grunt.loadNpmTasks('grunt-grunticon');
+
+	grunt.registerTask('js', ['jshint', 'concat', 'uglify', 'clean']);
+	
 }
