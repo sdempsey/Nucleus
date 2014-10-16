@@ -30,7 +30,6 @@
     "grunt-contrib-imagemin": "^0.8.1",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-grunticon": "^1.2.13",
     "grunt-newer": "^0.7.0"
   }
 }

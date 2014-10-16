@@ -43,23 +43,6 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
-		grunticon: { //creates .png fallbacks for .svg icons
-			myIcons: {
-				files: [{
-					expand: true,
-					cwd: 'images/svg',
-					src: ['*.svg', '*.png'],
-					dest: 'images/icons'
-				}],
-				options: {
-					pngfoler: 'images/icons/png',
-					colors: { //set custom colors here.  
-						vitalOrange: "#f05327",
-						plainWhite: "#fff"
-					}
-				}
-			}
-		},
 		watch: { //checks for specified changes, refreshes browser if plugin is installed
 			options: { livereload: true},
 			scripts: {
@@ -88,10 +71,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-combine-media-queries');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-newer');
-	grunt.loadNpmTasks('grunt-grunticon');
 
 	grunt.registerTask('js', ['jshint', 'concat']);
 	grunt.registerTask('css', ['compass', 'cmq']);
-	grunt.registerTask('img', ['newer:imagemin', 'newer:grunticon']);
+	grunt.registerTask('img', ['newer:imagemin']);
 	grunt.registerTask('default', ['js', 'css', 'img']);	
 }
