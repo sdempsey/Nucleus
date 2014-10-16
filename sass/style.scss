@@ -1,0 +1,324 @@
+/*
+    Theme Name:     Nucleus
+    Theme URI:      http://vtldesign.com
+    Description:    A blank WordPress theme
+    Version:        1.0
+    Author:         Vital
+    Author URI:     http://vtldesign.com
+*/
+
+//Called in this order specifically to ensure theme information remains at the top of style.css
+@import "base";
+
+/*
+	========================================
+		::Table of Contents
+		1. Reset & Global
+	    2. Layout
+	    3. Header
+	    4. Footer
+	    5. Navigation
+	        5.1. Main Navigation
+	        5.2. Utility Navigation
+	        5.3. Footer Navigation
+	    6. WYSIWYG Core Styles
+	    7. Global Blocks
+	    8. UI Elements
+	========================================
+*/
+
+/*
+	========================================
+		::Reset & Global
+	========================================
+*/
+
+@include global-reset; //compass mixin
+@include selection($white, $blue); // _custom.scss mixin
+@include border-box-sizing; //compass mixin
+
+body {
+	position: relative;
+	background: map-get($colors, body-bg);
+	font-family: map-get($fonts, base);
+	font-weight: normal;
+	font-style: normal;
+	line-height: 1.25;
+}
+
+a {
+	color: map-get($colors, a-color);
+}
+.group {
+	@include clearfix; 
+}
+
+.screen-reader-text {
+	@include screen-reader-text; // _custom.scss mixin
+}
+
+/*
+	========================================
+		::Layout
+	========================================
+*/
+
+/*
+	========================================
+		::Header
+	========================================
+*/
+
+/*
+	========================================
+		::Footer
+	========================================
+*/
+
+/*
+	========================================
+		::Navigation
+	========================================
+*/
+
+/*   5.1. Main Navigation
+    --------------------------------------------------------------------------  */
+
+/*   5.2. Utility Navigation
+    --------------------------------------------------------------------------  */
+
+/*   5.3. Footer Navigation
+    --------------------------------------------------------------------------  */
+
+
+/*
+	========================================
+		::WYSIWYG Core Styles
+	========================================
+*/
+.entry {
+  h1 {
+    margin-top: 1.67em;
+    margin-bottom: .5em;
+    font-size: 2em;
+  }
+  h2 {
+    margin: 1.2em 0 .4em;
+    font-size: 1.5em;
+  }
+  h1 + h2 {
+    margin-top: -0.5em;
+  }
+  h3 {
+    margin: 1.8em 0 .4em;
+    font-size: 1.25em;
+  }
+  h2 + h3 {
+    margin-top: -0.4em;
+    margin-bottom: .2em;
+  }
+  h4 {
+    margin: 1.8em 0 .4em;
+    font-size: 1em;
+  }
+  h3 + h4 {
+    margin-top: -0.3em;
+  }
+  h5 {
+    margin: 1.8em 0 .4em;
+    font-size: 1em;
+  }
+  h4 + h5 {
+    margin-top: -0.3em;
+  }
+  h6 {
+    margin: 1.8em 0 .4em;
+    font-size: 1em;
+  }
+  h5 + h6 {
+    margin-top: -0.2em;
+  }
+  h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+    margin-top: 0;
+  }
+  p, pre {
+    margin: 1em 0 0;
+  }
+  p {
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  blockquote {
+    margin: 1em 2.5em;
+    font-style: italic;
+    p {
+      &:before {
+        content: "\201C";
+        display: inline-block;
+        padding-right: .1em;
+      }
+      &:after {
+        content: "\201D";
+        display: inline-block;
+      }
+    }
+  }
+  hr {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    clear: both;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+  }
+  code {
+    font-family: monospace;
+    font-size: 1em;
+  }
+  pre {
+    font-family: monospace;
+    font-size: 1em;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  sub {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+    top: -0.5em;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  ul, ol {
+    margin: 1em 0;
+    padding: 0 0 0 2.5em;
+  }
+  ul {
+    list-style-type: disc;
+    ul {
+      list-style-type: circle;
+      ul {
+        list-style-type: square;
+      }
+    }
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  li {
+    font-size: 1em;
+  }
+  table {
+    margin: 0;
+    padding: 0;
+    th, td {
+      padding: .625em 1.25em;
+      border-bottom: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      border-width: 2px;
+    }
+    tr {
+      &:last-child td {
+        border-bottom: none;
+      }
+      &:nth-child(even) {
+        background: #eee;
+      }
+    }
+  }
+  .alignnone {
+    margin: 1em 1em 1em 0;
+  }
+  .aligncenter {
+    display: block;
+    margin: .5em auto;
+  }
+  .alignright {
+    float: right;
+    margin: 0 0 1em 1em;
+  }
+  .alignleft {
+    float: left;
+    margin: 0 1em 1em 0;
+  }
+  .aligncenter {
+    display: block;
+    margin: 1em auto;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    border: none;
+    &[class*="align"], &[class*="wp-image-"] {
+      max-width: 100%;
+      height: auto;
+      border: none;
+    }
+    &.alignright {
+      margin: 1em 0 1em 1em;
+    }
+    &.alignleft {
+      margin: 1em 1em 1em 0;
+    }
+    &.aligncenter {
+      display: block;
+      margin: 1em auto;
+    }
+  }
+  .wp-caption {
+    max-width: 96%;
+    margin-bottom: 1em;
+    margin-left: 0;
+    text-align: center;
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .wp-caption-text {
+    position: relative;
+    font-size: .8em;
+  }
+  iframe {
+    max-width: 100%;
+  }
+}
+
+@include at-breakpoint(30em) {
+  .entry {
+    p, li {
+      font-size: .875em;
+    }
+  }
+}
+
+/*
+	========================================
+		::Global Blocks
+	========================================
+*/
+
+/*
+	========================================
+		::UI Elements
+	========================================
+*/

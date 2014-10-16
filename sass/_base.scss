@@ -1,0 +1,67 @@
+@import "compass";
+@import "susyone";
+@import "fonts";
+@import "custom";
+
+/*
+	========================================
+		::Custom Variables
+	========================================
+*/
+
+$image-path: 'images/';
+$icon-path: 'images/icons/';
+
+
+/*
+	========================================
+		::Breakpoints
+	========================================
+*/
+
+$small: pxtoem(600px);  //let's talk more about these.  I'd like to try and find common ground.
+$medium: pxtoem(760px);
+$large: pxtoem(1000px);
+$x-large: pxtoem(1280px);
+$xx-large: pxtoem(1400px);
+
+/*
+	========================================
+		::Z-index Map
+	========================================
+*/
+
+$z-index: (
+
+);
+
+/*
+	========================================
+		::Color Definitions and Map
+	========================================
+*/
+
+$black: #000000;
+$white: #ffffff;
+$blue: #0096d2;
+
+//these are examples.  call them like so: body { color: map-get($colors, copy-color); }
+$colors: (
+	selection-bg: $blue,
+	selection-color: $white,
+	copy-color: $black,
+	body-bg: $white,
+	a-color: $blue
+);
+
+/*
+	========================================
+		::Font Stacks
+	========================================
+*/
+
+//another example: font-family: map-get($fonts, base);
+$fonts: (
+	base: "'Helvetica Neue', Helvetica, Arial, sans-serif"
+);
+

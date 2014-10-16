@@ -7,111 +7,317 @@
     Author URI:     http://vtldesign.com
 */
 
-/* --------------------------------------------------------------------------
+/* ==========================================================================
+    FONTS
+   ========================================================================== */
 
-    TABLE OF CONTENTS
+/*
+	========================================
+		::Custom Variables
+	========================================
+*/
 
-    1. Reset & Global
-    2. Layout
-    3. Header
-    4. Footer
-    5. Navigation
-        5.1. Main Navigation
-        5.2. Utility Navigation
-        5.3. Footer Navigation
-    6. WYSIWYG Core Styles
-    7. Global Blocks
-    8. UI Elements
+/*
+	========================================
+		::Breakpoints
+	========================================
+*/
 
+/*
+	========================================
+		::Z-index Map
+	========================================
+*/
 
-/*  ==========================================================================
-     1. RESET & GLOBAL
-    ==========================================================================  */
+/*
+	========================================
+		::Color Definitions and Map
+	========================================
+*/
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
+/*
+	========================================
+		::Font Stacks
+	========================================
+*/
+
+/*
+	========================================
+		::Table of Contents
+		1. Reset & Global
+	    2. Layout
+	    3. Header
+	    4. Footer
+	    5. Navigation
+	        5.1. Main Navigation
+	        5.2. Utility Navigation
+	        5.3. Footer Navigation
+	    6. WYSIWYG Core Styles
+	    7. Global Blocks
+	    8. UI Elements
+	========================================
+*/
+
+/*
+	========================================
+		::Reset & Global
+	========================================
+*/
+
+/* line 5, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.1.0.alpha.3/stylesheets/compass/reset/_utilities.scss */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
 }
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
+
+/* line 22, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.1.0.alpha.3/stylesheets/compass/reset/_utilities.scss */
+
+html {
+	line-height: 1;
 }
-ol, ul {
-    list-style: none;
+
+/* line 24, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.1.0.alpha.3/stylesheets/compass/reset/_utilities.scss */
+
+ol,
+ul {
+	list-style: none;
 }
+
+/* line 26, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.1.0.alpha.3/stylesheets/compass/reset/_utilities.scss */
+
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-::-moz-selection { background: #0096d2; color:#fff; }
-::selection { background: #0096d2; color:#fff; }
+/* line 28, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.1.0.alpha.3/stylesheets/compass/reset/_utilities.scss */
 
-*,
-*:before,
-*:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+caption,
+th,
+td {
+	text-align: left;
+	font-weight: normal;
+	vertical-align: middle;
 }
+
+/* line 30, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.1.0.alpha.3/stylesheets/compass/reset/_utilities.scss */
+
+q,
+blockquote {
+	quotes: none;
+}
+
+/* line 103, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.1.0.alpha.3/stylesheets/compass/reset/_utilities.scss */
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+	content: "";
+	content: none;
+}
+
+/* line 32, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.1.0.alpha.3/stylesheets/compass/reset/_utilities.scss */
+
+a img {
+	border: none;
+}
+
+/* line 116, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.1.0.alpha.3/stylesheets/compass/reset/_utilities.scss */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+	display: block;
+}
+
+/* line 61, sass/_custom.scss */
+
+::-moz-selection {
+	color: #ffffff;
+	background: #0096d2;
+	text-shadow: none;
+}
+
+/* line 61, sass/_custom.scss */
+
+::selection {
+	color: #ffffff;
+	background: #0096d2;
+	text-shadow: none;
+}
+
+/* line 14, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/susy-2.1.3/sass/susy/language/susyone/_grid.scss */
+
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* line 40, sass/style.scss */
+
 body {
-    position: relative;
-    background: #fff;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: normal;
-    font-style: normal;
-    line-height: 1.25;
+	position: relative;
+	background: #ffffff;
+	font-family: "'Helvetica Neue', Helvetica, Arial, sans-serif";
+	font-weight: normal;
+	font-style: normal;
+	line-height: 1.25;
 }
+
+/* line 49, sass/style.scss */
+
 a {
-    color: #0096d2;
-    text-decoration: none;
+	color: #0096d2;
 }
+
+/* line 52, sass/style.scss */
+
+.group {
+	*zoom: 1;
+}
+
+/* line 42, sass/_custom.scss */
+
 .group:before,
-.group:after { content: " "; display: table; }
-.group:after { clear: both; }
+.group:after {
+	content: " ";
+	display: table;
+}
+
+/* line 47, sass/_custom.scss */
+
+.group:after {
+	clear: both;
+}
+
+/* line 56, sass/style.scss */
 
 .screen-reader-text {
-    position: absolute !important;
-    clip: rect(1px 1px 1px 1px);
-    clip: rect(1px, 1px, 1px, 1px);
-}
-[hidden] {
-  display: none;
+	position: absolute;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
 }
 
-/*  ==========================================================================
-     2. LAYOUT
-    ==========================================================================  */
+/*
+	========================================
+		::Layout
+	========================================
+*/
 
+/*
+	========================================
+		::Header
+	========================================
+*/
 
-/*  ==========================================================================
-     3. HEADER
-    ==========================================================================  */
+/*
+	========================================
+		::Footer
+	========================================
+*/
 
-
-/*  ==========================================================================
-     4. FOOTER
-    ==========================================================================  */
-
-
-/*  ==========================================================================
-     5. NAVIGATION
-    ==========================================================================  */
+/*
+	========================================
+		::Navigation
+	========================================
+*/
 
 /*   5.1. Main Navigation
     --------------------------------------------------------------------------  */
@@ -122,224 +328,390 @@ a {
 /*   5.3. Footer Navigation
     --------------------------------------------------------------------------  */
 
+/*
+	========================================
+		::WYSIWYG Core Styles
+	========================================
+*/
 
-/*  ==========================================================================
-     6. WYSIWYG Core Styles
-    ==========================================================================  */
+/* line 100, sass/style.scss */
 
 .entry h1 {
-    margin-top: 1.67em;
-    margin-bottom: .5em;
-    font-size: 2em;
+	margin-top: 1.67em;
+	margin-bottom: .5em;
+	font-size: 2em;
 }
+
+/* line 105, sass/style.scss */
+
 .entry h2 {
-    margin: 1.2em 0 .4em;
-    font-size: 1.5em;
+	margin: 1.2em 0 .4em;
+	font-size: 1.5em;
 }
+
+/* line 109, sass/style.scss */
+
 .entry h1 + h2 {
-    margin-top: -.5em;
+	margin-top: -0.5em;
 }
+
+/* line 112, sass/style.scss */
+
 .entry h3 {
-    margin: 1.8em 0 .4em;
-    font-size: 1.25em;
+	margin: 1.8em 0 .4em;
+	font-size: 1.25em;
 }
+
+/* line 116, sass/style.scss */
+
 .entry h2 + h3 {
-    margin-top: -.4em;
-    margin-bottom: .2em;
+	margin-top: -0.4em;
+	margin-bottom: .2em;
 }
+
+/* line 120, sass/style.scss */
+
 .entry h4 {
-    margin: 1.8em 0 .4em;
-    font-size: 1em;
+	margin: 1.8em 0 .4em;
+	font-size: 1em;
 }
+
+/* line 124, sass/style.scss */
+
 .entry h3 + h4 {
-    margin-top: -.3em;
+	margin-top: -0.3em;
 }
+
+/* line 127, sass/style.scss */
+
 .entry h5 {
-    margin: 1.8em 0 .4em;
-    font-size: 1em;
+	margin: 1.8em 0 .4em;
+	font-size: 1em;
 }
+
+/* line 131, sass/style.scss */
+
 .entry h4 + h5 {
-    margin-top: -.3em;
+	margin-top: -0.3em;
 }
+
+/* line 134, sass/style.scss */
+
 .entry h6 {
-    margin: 1.8em 0 .4em;
-    font-size: 1em;
+	margin: 1.8em 0 .4em;
+	font-size: 1em;
 }
+
+/* line 138, sass/style.scss */
+
 .entry h5 + h6 {
-    margin-top: -.2em;
+	margin-top: -0.2em;
 }
+
+/* line 141, sass/style.scss */
+
 .entry h1:first-child,
 .entry h2:first-child,
 .entry h3:first-child,
 .entry h4:first-child,
 .entry h5:first-child,
 .entry h6:first-child {
-    margin-top: 0;
+	margin-top: 0;
 }
+
+/* line 144, sass/style.scss */
+
 .entry p,
 .entry pre {
-    margin: 1em 0 0;
+	margin: 1em 0 0;
 }
+
+/* line 147, sass/style.scss */
+
 .entry p {
-    word-wrap: break-word;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
+	word-wrap: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
 }
+
+/* line 153, sass/style.scss */
+
 .entry p:first-child {
-    margin-top: 0;
+	margin-top: 0;
 }
+
+/* line 157, sass/style.scss */
+
 .entry blockquote {
-    margin: 1em 2.5em;
-    font-style: italic;
+	margin: 1em 2.5em;
+	font-style: italic;
 }
+
+/* line 161, sass/style.scss */
+
 .entry blockquote p:before {
-     content: "\201C";
-     display: inline-block;
-     padding-right: .1em;
+	content: "\201C";
+	display: inline-block;
+	padding-right: .1em;
 }
+
+/* line 166, sass/style.scss */
+
 .entry blockquote p:after {
-     content: "\201D";
-     display: inline-block;
+	content: "\201D";
+	display: inline-block;
 }
+
+/* line 172, sass/style.scss */
+
 .entry hr {
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    clear: both;
-    height: 1px;
-    padding: 0;
-    border: 0;
-    border-top: 1px solid #ccc;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	clear: both;
+	height: 1px;
+	padding: 0;
+	border: 0;
+	border-top: 1px solid #ccc;
 }
-.entry code,
+
+/* line 182, sass/style.scss */
+
+.entry code {
+	font-family: monospace;
+	font-size: 1em;
+}
+
+/* line 186, sass/style.scss */
+
 .entry pre {
-    font-family: monospace;
-    font-size: 1em;
+	font-family: monospace;
+	font-size: 1em;
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
-.entry pre {
-    white-space: pre;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
-.entry sub,
-.entry sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-}
-.entry sup {
-    top: -0.5em;
-}
+
+/* line 193, sass/style.scss */
+
 .entry sub {
-    bottom: -0.25em;
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
 }
+
+/* line 199, sass/style.scss */
+
+.entry sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+	top: -0.5em;
+}
+
+/* line 206, sass/style.scss */
+
+.entry sub {
+	bottom: -0.25em;
+}
+
+/* line 209, sass/style.scss */
+
 .entry ul,
 .entry ol {
-    margin: 1em 0;
-    padding: 0 0 0 2.5em;
+	margin: 1em 0;
+	padding: 0 0 0 2.5em;
 }
+
+/* line 213, sass/style.scss */
+
 .entry ul {
-    list-style-type: disc;
+	list-style-type: disc;
 }
+
+/* line 215, sass/style.scss */
+
 .entry ul ul {
-    list-style-type: circle;
+	list-style-type: circle;
 }
+
+/* line 217, sass/style.scss */
+
 .entry ul ul ul {
-    list-style-type: square;
+	list-style-type: square;
 }
+
+/* line 222, sass/style.scss */
+
 .entry ol {
-    list-style-type: decimal;
+	list-style-type: decimal;
 }
+
+/* line 225, sass/style.scss */
+
 .entry li {
-    font-size: 1em;
+	font-size: 1em;
 }
+
+/* line 228, sass/style.scss */
+
 .entry table {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
+
+/* line 231, sass/style.scss */
+
 .entry table th,
 .entry table td {
-    padding: .625em 1.25em;
-    border-bottom: 1px solid #ccc;
-    text-align: left;
+	padding: .625em 1.25em;
+	border-bottom: 1px solid #ccc;
+	text-align: left;
 }
+
+/* line 236, sass/style.scss */
+
 .entry table th {
-    border-width: 2px;
+	border-width: 2px;
 }
+
+/* line 240, sass/style.scss */
+
 .entry table tr:last-child td {
-    border-bottom: none;
+	border-bottom: none;
 }
+
+/* line 243, sass/style.scss */
+
 .entry table tr:nth-child(even) {
-    background: #eee;
+	background: #eee;
 }
+
+/* line 248, sass/style.scss */
+
 .entry .alignnone {
-    margin: 1em 1em 1em 0;
+	margin: 1em 1em 1em 0;
 }
+
+/* line 251, sass/style.scss */
+
 .entry .aligncenter {
-    display: block;
-    margin: .5em auto;
+	display: block;
+	margin: .5em auto;
 }
+
+/* line 255, sass/style.scss */
+
 .entry .alignright {
-    float: right;
-    margin: 0 0 1em 1em;
+	float: right;
+	margin: 0 0 1em 1em;
 }
+
+/* line 259, sass/style.scss */
+
 .entry .alignleft {
-    float: left;
-    margin: 0 1em 1em 0;
+	float: left;
+	margin: 0 1em 1em 0;
 }
+
+/* line 263, sass/style.scss */
+
 .entry .aligncenter {
-    display: block;
-    margin: 1em auto;
+	display: block;
+	margin: 1em auto;
 }
-.entry img,
+
+/* line 267, sass/style.scss */
+
+.entry img {
+	max-width: 100%;
+	height: auto;
+	border: none;
+}
+
+/* line 271, sass/style.scss */
+
 .entry img[class*="align"],
 .entry img[class*="wp-image-"] {
-    max-width: 100%;
-    height: auto;
-    border: none;
+	max-width: 100%;
+	height: auto;
+	border: none;
 }
+
+/* line 276, sass/style.scss */
+
 .entry img.alignright {
-    margin: 1em 0 1em 1em;
+	margin: 1em 0 1em 1em;
 }
+
+/* line 279, sass/style.scss */
+
 .entry img.alignleft {
-    margin: 1em 1em 1em 0;
+	margin: 1em 1em 1em 0;
 }
-.entry img.aligncenter{
-    display: block;
-    margin: 1em auto;
+
+/* line 282, sass/style.scss */
+
+.entry img.aligncenter {
+	display: block;
+	margin: 1em auto;
 }
+
+/* line 287, sass/style.scss */
+
 .entry .wp-caption {
-    max-width: 96%;
-    margin-bottom: 1em;
-    margin-left: 0;
-    text-align: center;
+	max-width: 96%;
+	margin-bottom: 1em;
+	margin-left: 0;
+	text-align: center;
 }
+
+/* line 292, sass/style.scss */
+
 .entry .wp-caption img {
-    display: block;
-    margin: 0 auto;
+	display: block;
+	margin: 0 auto;
 }
+
+/* line 297, sass/style.scss */
+
 .entry .wp-caption-text {
-    position: relative;
-    font-size: .8em;
+	position: relative;
+	font-size: .8em;
 }
+
+/* line 301, sass/style.scss */
+
 .entry iframe {
-    max-width: 100%;
-}
-@media only screen and (max-width: 30em) {
-
-    .entry p,
-    .entry li {
-        font-size: .875em;
-    }
+	max-width: 100%;
 }
 
-/*  ==========================================================================
-     7. GLOBAL BLOCKS
-    ==========================================================================  */
+/*
+	========================================
+		::Global Blocks
+	========================================
+*/
 
-/*  ==========================================================================
-     8. UI ELEMENTS
-    ==========================================================================  */
+/*
+	========================================
+		::UI Elements
+	========================================
+*/
+
+/*# sourceMappingURL=style.css.map */
+
+@media (min-width: 30em) {
+
+/* line 308, sass/style.scss */
+
+.entry p,
+.entry li {
+	font-size: .875em;
+}
+
+}
+
