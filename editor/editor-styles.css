@@ -11,41 +11,41 @@
 /*  ==========================================================================
      EDITOR STYLES
     ==========================================================================  */
-/* line 15, ../sass/editor/editor-styles.scss */
+/* line 17, ../sass/editor/editor-styles.scss */
 body {
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   font-size: .875em;
   line-height: 1.5;
 }
 
-/* line 20, ../sass/editor/editor-styles.scss */
+/* line 22, ../sass/editor/editor-styles.scss */
 a {
   color: #0174a2;
 }
 
-/* line 23, ../sass/editor/editor-styles.scss */
+/* line 25, ../sass/editor/editor-styles.scss */
 blockquote {
   font-style: italic;
 }
 
-/* line 26, ../sass/editor/editor-styles.scss */
+/* line 28, ../sass/editor/editor-styles.scss */
 .alignnone {
   margin: 1em 1em 1em 0;
 }
 
-/* line 29, ../sass/editor/editor-styles.scss */
+/* line 31, ../sass/editor/editor-styles.scss */
 .alignright {
   float: right;
   margin: 0 0 1em 1em;
 }
 
-/* line 33, ../sass/editor/editor-styles.scss */
+/* line 35, ../sass/editor/editor-styles.scss */
 .alignleft {
   float: left;
   margin: 0 1em 1em 0;
 }
 
-/* line 37, ../sass/editor/editor-styles.scss */
+/* line 39, ../sass/editor/editor-styles.scss */
 .aligncenter {
   display: block;
   margin: 1em auto;
