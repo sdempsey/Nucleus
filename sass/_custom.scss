@@ -1,10 +1,12 @@
 //Useful functions and Mixins
+$base-font-size: 16px;
+
 @function pxtoem($px, $base: $base-font-size) {
   @return ($px / $base) + 0em;
 }
 
 @mixin center {
-  @include transform(translateX(-50%) translateY(-50%));
+  transform: translateX(-50%) translateY(-50%);
   position: absolute;
   top: 50%;
   left: 50%;  
@@ -53,17 +55,6 @@
   position: absolute;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
-}
-
-$prefixes: ("-moz-", "");
-@mixin selection($color, $background) {
-    @each $prefix in $prefixes {
-        ::#{$prefix}selection {
-            color: $color;
-            background: $background;
-            text-shadow:none;
-        }
-    }
 }
 
 @mixin triangle($side, $width, $height, $color) {
@@ -123,3 +114,55 @@ $ease-in-out-sine:  cubic-bezier(0.445,  0.050, 0.550, 0.950);
 $ease-in-out-expo:  cubic-bezier(1.000,  0.000, 0.000, 1.000);
 $ease-in-out-circ:  cubic-bezier(0.785,  0.135, 0.150, 0.860);
 $ease-in-out-back:  cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
+//Global Reset
+@mixin global-reset {
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+
+    body {
+        line-height: 1;
+    }
+
+    ol, ul {
+        list-style: none;
+    }
+
+    blockquote, q {
+        quotes: none;
+    }
+
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+}

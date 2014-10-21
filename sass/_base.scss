@@ -1,5 +1,4 @@
-@import "compass";
-@import "susyone";
+@import "susy";
 @import "fonts";
 @import "custom";
 
@@ -18,12 +17,34 @@ $icon-path: 'images/icons/';
 // 		::Breakpoints
 // 	========================================
 // */
-
+$smallest: pxtoem(480px);
 $small: pxtoem(600px);  //let's talk more about these.  I'd like to try and find common ground.
 $medium: pxtoem(760px);
 $large: pxtoem(1000px);
 $x-large: pxtoem(1280px);
 $xx-large: pxtoem(1400px);
+
+$breakpoints: (
+	smallest: $smallest,
+	small: $small,
+	medium: $medium,
+	large: $large,
+	x-large: $x-large,
+	xx-large: $x-large
+);
+
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  }
+  @else {
+    @warn "That variable doesn't exist in '#{$breakpoint}' dummy"
+      + "Add it to '$breakpoints' map, or GTFO.";
+  }
+}
 
 // /*
 // 	========================================
@@ -40,28 +61,36 @@ $z-index: (
 // 		::Color Definitions and Map
 // 	========================================
 // */
-
-$black: #000000;
-$white: #ffffff;
-$blue: #0096d2;
-
+$white: #fff;
+$black: #2c313b;
+$white: #fff;
+$blue: #00aaec;
 //these are examples.  call them like so: body { color: map-get($colors, copy-color); }
 $colors: (
-	selection-bg: $blue,
-	selection-color: $white,
-	copy-color: $black,
 	body-bg: $white,
-	a-color: $blue
+	body-copy: $black,
+	selection-color: $white,
+	selection-bg: $blue
 );
 
+@function color($key) {
+	@if map-has-key($colors, $key) {
+		@return map-get($colors, $key);
+	}
+
+	@warn "Unkown '#{$key}' in $colors.";
+	@return null;
+}
 // /*
 // 	========================================
 // 		::Font Stacks
 // 	========================================
 // */
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400);
 
 //another example: font-family: map-get($fonts, base);
+
 $fonts: (
-	base: "'Helvetica Neue', Helvetica, Arial, sans-serif"
+	base: "'Lato', sans-serif"
 );
 

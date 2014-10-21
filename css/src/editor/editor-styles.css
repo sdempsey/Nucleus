@@ -1,0 +1,47 @@
+/*  ==========================================================================
+     FONTS
+
+     This makes our site's fonts available to the backend editor so we can
+     better reflect how the site's text looks. You should add these to the
+     font select menu in the WYSIWYG (via functions.php) so they are available.
+    ==========================================================================  */
+/* ==========================================================================
+    FONTS
+   ========================================================================== */
+/*  ==========================================================================
+     EDITOR STYLES
+    ==========================================================================  */
+body {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-size: .875em;
+  line-height: 1.5;
+}
+
+a {
+  color: #0174a2;
+}
+
+blockquote {
+  font-style: italic;
+}
+
+.alignnone {
+  margin: 1em 1em 1em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0 0 1em 1em;
+}
+
+.alignleft {
+  float: left;
+  margin: 0 1em 1em 0;
+}
+
+.aligncenter {
+  display: block;
+  margin: 1em auto;
+}
+
+/*# sourceMappingURL=editor-styles.css.map */

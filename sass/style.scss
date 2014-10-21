@@ -33,17 +33,27 @@
 	========================================
 */
 
-@include global-reset; //compass mixin
-@include selection($white, $blue); // _custom.scss mixin
-@include border-box-sizing; //compass mixin
+@include global-reset; //_custom.scss mixin
+
+::selection {
+  color: $white;
+  background: $blue;
+  text-shadow: none;
+}
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
 
 body {
-	position: relative;
-	background: map-get($colors, body-bg);
-	font-family: map-get($fonts, base);
-	font-weight: normal;
-	font-style: normal;
-	line-height: 1.25;
+  position: relative;
+  background: color(body-bg);
+  font-family: #{map-get($fonts, base)};
+  font-weight: 300;
+  font-style: normal;
+    font-size:16px;
+  line-height: 1.25;
 }
 
 a {
@@ -303,7 +313,7 @@ a {
   }
 }
 
-@include at-breakpoint(30em) {
+@include respond-to(smallest) {
   .entry {
     p, li {
       font-size: .875em;

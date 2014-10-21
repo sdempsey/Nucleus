@@ -74,6 +74,70 @@
         'footer_nav' => 'Footer Navigation'
     ));
 
+    class Vital_Nav_Walker extends Walker_Nav_Menu {
+
+        function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+
+            $default_classes = empty ( $item->classes ) ? array () : (array) $item->classes;
+
+            $custom_classes = (array)get_post_meta( $item->ID, '_menu_item_classes', true );
+
+            // Is this a top-level menu item?
+            if ($depth == 0)
+                $custom_classes[] = 'menu-item-top-level';
+
+            // Does this menu item have children?
+            if (in_array('menu-item-has-children', $default_classes))
+                $custom_classes[] = 'menu-item-has-children';
+
+            // Is this menu item active? (Top level only)
+            $active_classes = array('current-menu-item', 'current-menu-parent', 'current-menu-ancestor', 'current_page_item', 'current-page-parent', 'current-page-ancestor');
+            if ($depth == 0 && array_intersect($default_classes, $active_classes))
+                $custom_classes[] = 'menu-item-active';
+
+            // Give menu item a class based on its level/depth
+            $level = $depth + 1;
+            if ($depth > 0)
+                $custom_classes[] = "menu-item-level-$level";
+
+            $classes = join(' ', $custom_classes);
+
+            ! empty ( $classes )
+                and $classes = ' class="'. trim(esc_attr( $classes )) . '"';
+
+            $output .= "<li $classes>";
+
+            $attributes  = '';
+
+            ! empty( $item->attr_title )
+                and $attributes .= ' title="'  . esc_attr( $item->attr_title ) .'"';
+            ! empty( $item->target )
+                and $attributes .= ' target="' . esc_attr( $item->target     ) .'"';
+            ! empty( $item->xfn )
+                and $attributes .= ' rel="'    . esc_attr( $item->xfn        ) .'"';
+            ! empty( $item->url )
+                and $attributes .= ' href="'   . esc_attr( $item->url        ) .'"';
+
+            $title = apply_filters( 'the_title', $item->title, $item->ID );
+
+            $item_output = $args->before
+                . "<a $attributes>"
+                . $args->link_before
+                . $title
+                . '</a> '
+                . $args->link_after
+                . $description
+                . $args->after;
+
+            $output .= apply_filters(
+                'walker_nav_menu_start_el'
+            ,   $item_output
+            ,   $item
+            ,   $depth
+            ,   $args
+            );
+        }
+    }
 
 /*  ==========================================================================
      WIDGETS

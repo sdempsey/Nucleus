@@ -9,20 +9,40 @@ module.exports = function(grunt) {
 				dest: 'scripts/site/main.js'
 			}
 		},
-		compass: { //compiles SASS, does other awesome stuff (www.compass-style.org)
-			debug: {
+		sass: {
+			dubug: {
 				options: {
+					style: 'expanded',
 					require: 'susy',
-					sassDir: 'sass',
-					cssDir: '.',
-					sourcemap:true
+					noCache: true
+				},
+				files: {
+					'css/src/editor/editor-styles.css': 'sass/editor/editor-styles.scss',
+					'css/src/style.css': [
+					'sass/style.scss',
+					'sass/_custom.scss',
+					'sass/_fontcustom.scss',
+					'sass/_fonts.scss',
+					'sass/_base.scss'
+					]
 				}
-			},
+			}
+		},
+		autoprefixer: {
 			editor: {
+				expand:true,
+				flatten: true,
+				src: 'css/src/editor-styles.css',
+				dest: 'css/editor-styles.css'
+			},
+			base: {
 				options: {
-					sassDir: 'sass/editor',
-					cssDir: 'css'
-				}
+					map:true
+				},
+				expand:true,
+				flatten: true,
+				src: 'css/src/style.css',
+				dest: '.'
 			}
 		},
 		cmq: { //combines media queries
@@ -43,6 +63,24 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
+		// webfont: { //I use this, you don't have to.  It generates icon fonts using fontforge.
+		// 	icons: {
+		// 		src: 'fonts/src/*.svg',
+		// 		dest: 'fonts',
+		// 		destCss: 'sass',
+		// 		options: {
+		// 			engine: 'node',
+		// 			font: 'fontcustom',
+		// 			hashes: false,
+		// 			stylesheet: 'scss',
+		// 			relativeFontPath: 'fonts/',
+		// 			templateOptions: {
+		// 				classPrefix: 'icon-',
+		// 				mixinPrefix: 'icon-'
+		// 			}
+		// 		}
+		// 	}
+		// },		
 		watch: { //checks for specified changes, refreshes browser if plugin is installed
 			options: { livereload: true},
 			scripts: {
@@ -67,13 +105,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.loadNpmTasks('grunt-contrib-compass')
+	grunt.loadNpmTasks('grunt-contrib-sass')
 	grunt.loadNpmTasks('grunt-combine-media-queries');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
 	grunt.loadNpmTasks('grunt-newer');
+	grunt.loadNpmTasks('grunt-autoprefixer');
 
 	grunt.registerTask('js', ['jshint', 'concat']);
-	grunt.registerTask('css', ['compass', 'cmq']);
+	grunt.registerTask('css', ['sass', 'autoprefixer', 'cmq']);
 	grunt.registerTask('img', ['newer:imagemin']);
 	grunt.registerTask('default', ['js', 'css', 'img']);	
 }
