@@ -5,7 +5,7 @@ Modernizr.addTest('matchmedia', function(){
 
 // Script loader
 Modernizr.load([
-    { // Media Queries & matchMedia
+    { // Media Queries
         test: Modernizr.mq,
         nope: SiteInfo.theme_directory + '/scripts/libraries/respond.src.js'
     },
